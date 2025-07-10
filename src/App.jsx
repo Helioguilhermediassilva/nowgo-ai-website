@@ -18,6 +18,16 @@ function App() {
   })
   const [isContactSubmitted, setIsContactSubmitted] = useState(false)
   const [activeProject, setActiveProject] = useState(null)
+  
+  const [demoForm, setDemoForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    solution: '',
+    date: '',
+    message: ''
+  })
+  const [isDemoSubmitted, setIsDemoSubmitted] = useState(false)
 
   const handleContactSubmit = (e) => {
     e.preventDefault()
@@ -29,9 +39,26 @@ function App() {
     }, 3000)
   }
 
+  const handleDemoSubmit = (e) => {
+    e.preventDefault()
+    // Simulate demo scheduling
+    setIsDemoSubmitted(true)
+    setTimeout(() => {
+      setIsDemoSubmitted(false)
+      setDemoForm({ name: '', email: '', company: '', solution: '', date: '', message: '' })
+    }, 3000)
+  }
+
   const handleInputChange = (e) => {
     setContactForm({
       ...contactForm,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleDemoInputChange = (e) => {
+    setDemoForm({
+      ...demoForm,
       [e.target.name]: e.target.value
     })
   }
@@ -346,6 +373,104 @@ function App() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white text-white hover:bg-white hover:text-primary"
+                >
+                  <Users className="mr-2 h-5 w-5" />
+                  Schedule a Demonstration
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Schedule a Demonstration</DialogTitle>
+                  <DialogDescription>
+                    Book a personalized demo of our AI solutions with our expert team.
+                  </DialogDescription>
+                </DialogHeader>
+                <form onSubmit={handleDemoSubmit} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="demo-name">Name</Label>
+                      <Input
+                        id="demo-name"
+                        name="name"
+                        value={demoForm.name}
+                        onChange={handleDemoInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="demo-email">Email</Label>
+                      <Input
+                        id="demo-email"
+                        name="email"
+                        type="email"
+                        value={demoForm.email}
+                        onChange={handleDemoInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="demo-company">Company</Label>
+                    <Input
+                      id="demo-company"
+                      name="company"
+                      value={demoForm.company}
+                      onChange={handleDemoInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="demo-solution">Solution of Interest</Label>
+                    <select
+                      id="demo-solution"
+                      name="solution"
+                      value={demoForm.solution}
+                      onChange={handleDemoInputChange}
+                      className="w-full p-2 border rounded-md"
+                      required
+                    >
+                      <option value="">Select a solution</option>
+                      <option value="custom-llms">Custom LLMs</option>
+                      <option value="tailored-iaas">Tailored IaaS</option>
+                      <option value="autonomous-agents">Autonomous Agents</option>
+                      <option value="all-solutions">All Solutions</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="demo-date">Preferred Date</Label>
+                    <Input
+                      id="demo-date"
+                      name="date"
+                      type="date"
+                      value={demoForm.date}
+                      onChange={handleDemoInputChange}
+                      min={new Date().toISOString().split('T')[0]}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="demo-message">Additional Information</Label>
+                    <Textarea
+                      id="demo-message"
+                      name="message"
+                      value={demoForm.message}
+                      onChange={handleDemoInputChange}
+                      rows={3}
+                      placeholder="Tell us about your specific needs or questions..."
+                    />
+                  </div>
+                  <Button type="submit" className="w-full">
+                    Schedule Demo
+                  </Button>
+                </form>
+              </DialogContent>
+            </Dialog>
             <Button 
               size="lg" 
               variant="secondary" 
@@ -354,15 +479,6 @@ function App() {
             >
               <Globe className="mr-2 h-5 w-5" />
               Discover Our Global Solutions
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-white text-white hover:bg-white hover:text-primary"
-              onClick={() => scrollToSection('research')}
-            >
-              <Download className="mr-2 h-5 w-5" />
-              Access Scientific Publications
             </Button>
           </div>
         </div>
@@ -459,7 +575,7 @@ function App() {
                           <div className="flex gap-2">
                             <Dialog>
                               <DialogTrigger asChild>
-                                <Button className="flex-1">
+                                <Button className="w-full">
                                   <Mail className="mr-2 h-4 w-4" />
                                   Get Started
                                 </Button>
@@ -532,10 +648,6 @@ function App() {
                                 )}
                               </DialogContent>
                             </Dialog>
-                            <Button variant="outline" onClick={downloadPDF}>
-                              <FileText className="mr-2 h-4 w-4" />
-                              Download Spec
-                            </Button>
                           </div>
                         </div>
                       </DialogContent>
@@ -606,7 +718,7 @@ function App() {
                         <div className="flex gap-2">
                           <Dialog>
                             <DialogTrigger asChild>
-                              <Button className="flex-1">
+                              <Button className="w-full">
                                 <Mail className="mr-2 h-4 w-4" />
                                 Learn More
                               </Button>
@@ -678,10 +790,6 @@ function App() {
                               )}
                             </DialogContent>
                           </Dialog>
-                          <Button variant="outline" onClick={downloadPDF}>
-                            <FileText className="mr-2 h-4 w-4" />
-                            Project Brief
-                          </Button>
                         </div>
                       </div>
                     </DialogContent>
