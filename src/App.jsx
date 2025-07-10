@@ -1220,15 +1220,6 @@ function App() {
                 )}
               </DialogContent>
             </Dialog>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-white text-white hover:bg-white hover:text-primary"
-              onClick={downloadPDF}
-            >
-              <Download className="mr-2 h-5 w-5" />
-              Download Brochure
-            </Button>
           </div>
         </div>
       </section>
@@ -1262,9 +1253,253 @@ function App() {
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><button onClick={() => scrollToSection('about')} className="hover:text-primary transition-colors text-left">About</button></li>
-                <li><button onClick={() => window.open('mailto:careers@nowgo.ai')} className="hover:text-primary transition-colors text-left">Careers</button></li>
-                <li><button onClick={() => window.open('mailto:partnerships@nowgo.ai')} className="hover:text-primary transition-colors text-left">Partnerships</button></li>
+                <li>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="hover:text-primary transition-colors text-left">About</button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[600px]">
+                      <DialogHeader>
+                        <DialogTitle>About NowGo AI</DialogTitle>
+                        <DialogDescription>
+                          Leading the future of enterprise artificial intelligence
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4 max-h-[400px] overflow-y-auto">
+                        <div>
+                          <h4 className="font-semibold mb-2">Our Mission</h4>
+                          <p className="text-sm text-muted-foreground">
+                            To democratize artificial intelligence by creating personalized, sustainable, and scalable 
+                            solutions that empower industries, cities, and ecosystems to transform responsibly.
+                          </p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">Our Vision</h4>
+                          <p className="text-sm text-muted-foreground">
+                            A world where AI seamlessly integrates with human intelligence to solve complex global 
+                            challenges, from enterprise transformation to smart city development.
+                          </p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">Core Values</h4>
+                          <ul className="space-y-1 text-sm text-muted-foreground">
+                            <li>• <strong>Innovation:</strong> Pushing the boundaries of AI technology</li>
+                            <li>• <strong>Sustainability:</strong> Building environmentally responsible solutions</li>
+                            <li>• <strong>Transparency:</strong> Ethical AI development and deployment</li>
+                            <li>• <strong>Collaboration:</strong> Partnering with global organizations</li>
+                            <li>• <strong>Excellence:</strong> Delivering world-class AI solutions</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">Global Presence</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Headquartered in Brasília, Brazil, with operations across 4 continents and partnerships 
+                            with leading technology companies including NVIDIA.
+                          </p>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </li>
+                <li>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="hover:text-primary transition-colors text-left">Careers</button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[500px]">
+                      <DialogHeader>
+                        <DialogTitle>Join Our Team</DialogTitle>
+                        <DialogDescription>
+                          Be part of the AI revolution. Explore opportunities at NowGo AI.
+                        </DialogDescription>
+                      </DialogHeader>
+                      {isContactSubmitted ? (
+                        <div className="flex flex-col items-center justify-center py-8">
+                          <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                          <h3 className="text-lg font-semibold mb-2">Application Received!</h3>
+                          <p className="text-muted-foreground text-center">
+                            Thank you for your interest. Our HR team will review your application.
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="space-y-4">
+                          <div>
+                            <h4 className="font-semibold mb-2">Open Positions</h4>
+                            <ul className="space-y-2 text-sm text-muted-foreground">
+                              <li>• AI Research Scientist</li>
+                              <li>• Machine Learning Engineer</li>
+                              <li>• Full Stack Developer</li>
+                              <li>• Product Manager - AI Solutions</li>
+                              <li>• Business Development Manager</li>
+                              <li>• DevOps Engineer</li>
+                            </ul>
+                          </div>
+                          <form onSubmit={handleContactSubmit} className="space-y-4">
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="name">Full Name</Label>
+                                <Input
+                                  id="name"
+                                  name="name"
+                                  value={contactForm.name}
+                                  onChange={handleInputChange}
+                                  required
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="email">Email</Label>
+                                <Input
+                                  id="email"
+                                  name="email"
+                                  type="email"
+                                  value={contactForm.email}
+                                  onChange={handleInputChange}
+                                  required
+                                />
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="position">Position of Interest</Label>
+                              <select 
+                                className="w-full p-2 border rounded-md"
+                                name="position"
+                                required
+                              >
+                                <option value="">Select a position</option>
+                                <option value="ai-researcher">AI Research Scientist</option>
+                                <option value="ml-engineer">Machine Learning Engineer</option>
+                                <option value="fullstack-dev">Full Stack Developer</option>
+                                <option value="product-manager">Product Manager</option>
+                                <option value="business-dev">Business Development</option>
+                                <option value="devops">DevOps Engineer</option>
+                                <option value="other">Other</option>
+                              </select>
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="message">Tell us about yourself</Label>
+                              <Textarea
+                                id="message"
+                                name="message"
+                                value={contactForm.message}
+                                onChange={handleInputChange}
+                                rows={3}
+                                placeholder="Your experience, skills, and why you want to join NowGo AI..."
+                                required
+                              />
+                            </div>
+                            <Button type="submit" className="w-full">
+                              Submit Application
+                            </Button>
+                          </form>
+                        </div>
+                      )}
+                    </DialogContent>
+                  </Dialog>
+                </li>
+                <li>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="hover:text-primary transition-colors text-left">Partnerships</button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[500px]">
+                      <DialogHeader>
+                        <DialogTitle>Partnership Opportunities</DialogTitle>
+                        <DialogDescription>
+                          Let's collaborate to shape the future of AI together.
+                        </DialogDescription>
+                      </DialogHeader>
+                      {isContactSubmitted ? (
+                        <div className="flex flex-col items-center justify-center py-8">
+                          <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                          <h3 className="text-lg font-semibold mb-2">Partnership Inquiry Sent!</h3>
+                          <p className="text-muted-foreground text-center">
+                            Our partnerships team will review your proposal and get back to you soon.
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="space-y-4">
+                          <div>
+                            <h4 className="font-semibold mb-2">Partnership Types</h4>
+                            <ul className="space-y-1 text-sm text-muted-foreground">
+                              <li>• Technology Integration Partners</li>
+                              <li>• Research & Development Collaborations</li>
+                              <li>• Channel & Distribution Partners</li>
+                              <li>• Strategic Enterprise Alliances</li>
+                              <li>• Academic & Research Institutions</li>
+                            </ul>
+                          </div>
+                          <form onSubmit={handleContactSubmit} className="space-y-4">
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="name">Contact Name</Label>
+                                <Input
+                                  id="name"
+                                  name="name"
+                                  value={contactForm.name}
+                                  onChange={handleInputChange}
+                                  required
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor="email">Business Email</Label>
+                                <Input
+                                  id="email"
+                                  name="email"
+                                  type="email"
+                                  value={contactForm.email}
+                                  onChange={handleInputChange}
+                                  required
+                                />
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="company">Organization</Label>
+                              <Input
+                                id="company"
+                                name="company"
+                                value={contactForm.company}
+                                onChange={handleInputChange}
+                                placeholder="Company/Institution name"
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="partnership-type">Partnership Type</Label>
+                              <select 
+                                className="w-full p-2 border rounded-md"
+                                name="partnershipType"
+                                required
+                              >
+                                <option value="">Select partnership type</option>
+                                <option value="technology">Technology Integration</option>
+                                <option value="research">Research & Development</option>
+                                <option value="channel">Channel & Distribution</option>
+                                <option value="strategic">Strategic Alliance</option>
+                                <option value="academic">Academic Institution</option>
+                                <option value="other">Other</option>
+                              </select>
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="message">Partnership Proposal</Label>
+                              <Textarea
+                                id="message"
+                                name="message"
+                                value={contactForm.message}
+                                onChange={handleInputChange}
+                                rows={4}
+                                placeholder="Describe your partnership proposal, goals, and how we can collaborate..."
+                                required
+                              />
+                            </div>
+                            <Button type="submit" className="w-full">
+                              Submit Partnership Inquiry
+                            </Button>
+                          </form>
+                        </div>
+                      )}
+                    </DialogContent>
+                  </Dialog>
+                </li>
                 <li><button onClick={() => scrollToSection('research')} className="hover:text-primary transition-colors text-left">Research</button></li>
               </ul>
             </div>
@@ -1274,14 +1509,8 @@ function App() {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-center gap-2">
                   <Mail className="h-4 w-4" />
-                  <button onClick={() => window.open('mailto:contact@nowgo.ai')} className="hover:text-primary transition-colors">
-                    contact@nowgo.ai
-                  </button>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Phone className="h-4 w-4" />
-                  <button onClick={() => window.open('tel:+5561999999999')} className="hover:text-primary transition-colors">
-                    +55 (61) 9999-9999
+                  <button onClick={() => window.open('mailto:helio@nowgo.com.br')} className="hover:text-primary transition-colors">
+                    helio@nowgo.com.br
                   </button>
                 </li>
                 <li>
