@@ -1,30 +1,328 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
-import { Globe, Zap, Building, Users, Award, ArrowRight, Download, Mail } from 'lucide-react'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog.jsx'
+import { Input } from '@/components/ui/input.jsx'
+import { Textarea } from '@/components/ui/textarea.jsx'
+import { Label } from '@/components/ui/label.jsx'
+import { Globe, Zap, Building, Users, Award, ArrowRight, Download, Mail, Phone, MapPin, ExternalLink, FileText, CheckCircle, X } from 'lucide-react'
 import './App.css'
 
 function App() {
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  })
+  const [isContactSubmitted, setIsContactSubmitted] = useState(false)
+  const [activeProject, setActiveProject] = useState(null)
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault()
+    // Simulate form submission
+    setIsContactSubmitted(true)
+    setTimeout(() => {
+      setIsContactSubmitted(false)
+      setContactForm({ name: '', email: '', company: '', message: '' })
+    }, 3000)
+  }
+
+  const handleInputChange = (e) => {
+    setContactForm({
+      ...contactForm,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const downloadPDF = () => {
+    // Simulate PDF download
+    const link = document.createElement('a')
+    link.href = 'data:application/pdf;base64,JVBERi0xLjQKJdPr6eEKMSAwIG9iago8PAovVGl0bGUgKEVudGVycHJpc2UgQUkgaW4gU21hcnQgQ2l0aWVzKQovQ3JlYXRvciAoTm93R28gQUkpCi9Qcm9kdWNlciAoTm93R28gQUkpCi9DcmVhdGlvbkRhdGUgKEQ6MjAyNDEyMTApCj4+CmVuZG9iagp4cmVmCjAgMQowMDAwMDAwMDAwIDY1NTM1IGYgCnRyYWlsZXIKPDwKL1NpemUgMQovUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKMTczCiUlRU9G'
+    link.download = 'NowGo-AI-Enterprise-AI-Smart-Cities.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+  const projects = [
+    {
+      id: 1,
+      title: "NowGo Urban Mirror",
+      description: "Urban infrastructure optimization with AI",
+      category: "Smart Cities",
+      fullDescription: "A comprehensive AI-powered platform that analyzes urban infrastructure in real-time, optimizing traffic flow, energy consumption, and public services. The system uses computer vision, IoT sensors, and predictive analytics to create a digital twin of city operations.",
+      features: [
+        "Real-time traffic optimization",
+        "Smart energy grid management", 
+        "Predictive maintenance for infrastructure",
+        "Citizen engagement platform",
+        "Environmental monitoring"
+      ],
+      technologies: ["Computer Vision", "IoT Integration", "Predictive Analytics", "Digital Twin Technology"],
+      status: "Active Development"
+    },
+    {
+      id: 2,
+      title: "Earth Guard & GEIH",
+      description: "Environmental protection powered by AI",
+      category: "Sustainability",
+      fullDescription: "Global Environmental Intelligence Hub (GEIH) combines satellite imagery, climate data, and AI models to monitor environmental changes, predict climate impacts, and recommend sustainable practices for businesses and governments.",
+      features: [
+        "Satellite imagery analysis",
+        "Climate change prediction",
+        "Carbon footprint tracking",
+        "Biodiversity monitoring",
+        "Sustainable practice recommendations"
+      ],
+      technologies: ["Satellite AI", "Climate Modeling", "Carbon Analytics", "Biodiversity AI"],
+      status: "Pilot Phase"
+    },
+    {
+      id: 3,
+      title: "100% AI Hospital",
+      description: "Fully integrated intelligent healthcare system",
+      category: "Healthcare",
+      fullDescription: "Revolutionary healthcare system where AI handles diagnosis, treatment planning, patient monitoring, and hospital operations. Designed for emerging countries to provide world-class healthcare with minimal human intervention.",
+      features: [
+        "AI-powered diagnosis",
+        "Automated treatment planning",
+        "24/7 patient monitoring",
+        "Robotic surgery assistance",
+        "Predictive health analytics"
+      ],
+      technologies: ["Medical AI", "Robotics", "Computer Vision", "Natural Language Processing"],
+      status: "Research Phase"
+    },
+    {
+      id: 4,
+      title: "AI-Based Schools",
+      description: "Personalized and scalable education",
+      category: "Education",
+      fullDescription: "Adaptive learning platform that personalizes education for each student, providing customized curricula, real-time assessment, and intelligent tutoring systems that scale globally.",
+      features: [
+        "Personalized learning paths",
+        "Real-time performance assessment",
+        "AI tutoring systems",
+        "Multilingual support",
+        "Teacher assistance tools"
+      ],
+      technologies: ["Adaptive Learning", "Natural Language Processing", "Educational Analytics", "Personalization AI"],
+      status: "Beta Testing"
+    },
+    {
+      id: 5,
+      title: "Twinverse Studios",
+      description: "Music, cinema and storytelling with AI",
+      category: "Entertainment",
+      fullDescription: "Creative AI platform that assists in music composition, film production, and interactive storytelling. Enables creators to produce high-quality content with AI-powered tools for script writing, music generation, and visual effects.",
+      features: [
+        "AI music composition",
+        "Automated video editing",
+        "Script generation",
+        "Voice synthesis",
+        "Interactive storytelling"
+      ],
+      technologies: ["Generative AI", "Audio Processing", "Computer Graphics", "Natural Language Generation"],
+      status: "Commercial Release"
+    },
+    {
+      id: 6,
+      title: "AgriAI",
+      description: "Smart farming and AI-driven food systems",
+      category: "Agritech",
+      fullDescription: "Comprehensive agricultural AI system that optimizes crop yields, monitors soil health, predicts weather impacts, and manages supply chains to ensure food security and sustainable farming practices.",
+      features: [
+        "Crop yield optimization",
+        "Soil health monitoring",
+        "Weather prediction",
+        "Pest detection",
+        "Supply chain optimization"
+      ],
+      technologies: ["Precision Agriculture", "Computer Vision", "Weather AI", "Supply Chain Analytics"],
+      status: "Field Trials"
+    }
+  ]
+
+  const solutions = [
+    {
+      id: 'custom-llms',
+      title: 'Custom LLMs',
+      description: 'Personalized language models for specific sectors',
+      icon: Globe,
+      features: [
+        'Fine-tuning for legal, healthcare, finance',
+        'ESG and sustainability models',
+        'Integration with existing systems'
+      ],
+      fullDescription: 'Our Custom Large Language Models are specifically designed and trained for your industry needs. We fine-tune state-of-the-art models on your proprietary data while ensuring privacy and compliance.',
+      benefits: [
+        'Industry-specific knowledge and terminology',
+        'Improved accuracy for domain-specific tasks',
+        'Seamless integration with existing workflows',
+        'Enhanced data privacy and security',
+        'Reduced hallucinations and improved reliability'
+      ],
+      useCases: [
+        'Legal document analysis and generation',
+        'Medical diagnosis assistance',
+        'Financial risk assessment',
+        'Technical documentation',
+        'Customer service automation'
+      ]
+    },
+    {
+      id: 'tailored-iaas',
+      title: 'Tailored IaaS',
+      description: 'Scalable and secure infrastructure for enterprise AI',
+      icon: Building,
+      features: [
+        'Hybrid and multi-cloud',
+        'Regulatory compliance',
+        'Automatic scalability'
+      ],
+      fullDescription: 'Our Infrastructure as a Service solution provides enterprise-grade AI infrastructure that scales with your needs while maintaining the highest security and compliance standards.',
+      benefits: [
+        'Cost-effective scaling',
+        'Enterprise-grade security',
+        'Multi-cloud flexibility',
+        'Automated resource management',
+        'Compliance with global regulations'
+      ],
+      useCases: [
+        'Large-scale AI model training',
+        'Real-time inference at scale',
+        'Data processing pipelines',
+        'Disaster recovery systems',
+        'Global AI deployment'
+      ]
+    },
+    {
+      id: 'autonomous-agents',
+      title: 'Autonomous Agents',
+      description: 'Autonomous agents for urban and enterprise systems',
+      icon: Zap,
+      features: [
+        'Smart city management',
+        'Process automation',
+        'Real-time decision making'
+      ],
+      fullDescription: 'Intelligent autonomous agents that can operate independently to manage complex systems, make decisions, and optimize operations in real-time across various domains.',
+      benefits: [
+        '24/7 autonomous operation',
+        'Reduced operational costs',
+        'Improved efficiency and accuracy',
+        'Real-time adaptation to changes',
+        'Scalable across multiple domains'
+      ],
+      useCases: [
+        'Smart city traffic management',
+        'Industrial process optimization',
+        'Supply chain automation',
+        'Energy grid management',
+        'Emergency response coordination'
+      ]
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-background smooth-scroll">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => scrollToSection('home')}>
             <span className="text-2xl font-bold text-gradient">NowGo AI</span>
           </div>
           
           <nav className="hidden md:flex items-center space-x-6">
-            <a href="#home" className="text-sm font-medium hover:text-primary transition-colors">Home</a>
-            <a href="#solutions" className="text-sm font-medium hover:text-primary transition-colors">Solutions</a>
-            <a href="#projects" className="text-sm font-medium hover:text-primary transition-colors">Projects</a>
-            <a href="#research" className="text-sm font-medium hover:text-primary transition-colors">Research</a>
-            <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">About</a>
-            <Button size="sm">
-              <Mail className="mr-2 h-4 w-4" />
-              Contact
-            </Button>
+            <button onClick={() => scrollToSection('home')} className="text-sm font-medium hover:text-primary transition-colors">Home</button>
+            <button onClick={() => scrollToSection('solutions')} className="text-sm font-medium hover:text-primary transition-colors">Solutions</button>
+            <button onClick={() => scrollToSection('projects')} className="text-sm font-medium hover:text-primary transition-colors">Projects</button>
+            <button onClick={() => scrollToSection('research')} className="text-sm font-medium hover:text-primary transition-colors">Research</button>
+            <button onClick={() => scrollToSection('about')} className="text-sm font-medium hover:text-primary transition-colors">About</button>
+            
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button size="sm">
+                  <Mail className="mr-2 h-4 w-4" />
+                  Contact
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Contact NowGo AI</DialogTitle>
+                  <DialogDescription>
+                    Get in touch with our team to discuss your AI transformation needs.
+                  </DialogDescription>
+                </DialogHeader>
+                {isContactSubmitted ? (
+                  <div className="flex flex-col items-center justify-center py-8">
+                    <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                    <h3 className="text-lg font-semibold mb-2">Message Sent Successfully!</h3>
+                    <p className="text-muted-foreground text-center">
+                      Thank you for your interest. Our team will get back to you within 24 hours.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleContactSubmit} className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input
+                          id="name"
+                          name="name"
+                          value={contactForm.name}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={contactForm.email}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="company">Company</Label>
+                      <Input
+                        id="company"
+                        name="company"
+                        value={contactForm.company}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="message">Message</Label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={contactForm.message}
+                        onChange={handleInputChange}
+                        rows={4}
+                        required
+                      />
+                    </div>
+                    <Button type="submit" className="w-full">
+                      Send Message
+                    </Button>
+                  </form>
+                )}
+              </DialogContent>
+            </Dialog>
           </nav>
         </div>
       </header>
@@ -48,11 +346,21 @@ function App() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              className="bg-white text-primary hover:bg-white/90"
+              onClick={() => scrollToSection('solutions')}
+            >
               <Globe className="mr-2 h-5 w-5" />
               Discover Our Global Solutions
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-white text-white hover:bg-white hover:text-primary"
+              onClick={() => scrollToSection('research')}
+            >
               <Download className="mr-2 h-5 w-5" />
               Access Scientific Publications
             </Button>
@@ -91,65 +399,151 @@ function App() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="card-hover">
-              <CardHeader>
-                <Globe className="h-12 w-12 text-primary mb-4" />
-                <CardTitle>Custom LLMs</CardTitle>
-                <CardDescription>
-                  Personalized language models for specific sectors
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Fine-tuning for legal, healthcare, finance</li>
-                  <li>• ESG and sustainability models</li>
-                  <li>• Integration with existing systems</li>
-                </ul>
-                <Button className="w-full mt-4" variant="outline">
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover">
-              <CardHeader>
-                <Building className="h-12 w-12 text-primary mb-4" />
-                <CardTitle>Tailored IaaS</CardTitle>
-                <CardDescription>
-                  Scalable and secure infrastructure for enterprise AI
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Hybrid and multi-cloud</li>
-                  <li>• Regulatory compliance</li>
-                  <li>• Automatic scalability</li>
-                </ul>
-                <Button className="w-full mt-4" variant="outline">
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover">
-              <CardHeader>
-                <Zap className="h-12 w-12 text-primary mb-4" />
-                <CardTitle>Autonomous Agents</CardTitle>
-                <CardDescription>
-                  Autonomous agents for urban and enterprise systems
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Smart city management</li>
-                  <li>• Process automation</li>
-                  <li>• Real-time decision making</li>
-                </ul>
-                <Button className="w-full mt-4" variant="outline">
-                  Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardContent>
-            </Card>
+            {solutions.map((solution) => {
+              const IconComponent = solution.icon
+              return (
+                <Card key={solution.id} className="card-hover">
+                  <CardHeader>
+                    <IconComponent className="h-12 w-12 text-primary mb-4" />
+                    <CardTitle>{solution.title}</CardTitle>
+                    <CardDescription>
+                      {solution.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      {solution.features.map((feature, index) => (
+                        <li key={index}>• {feature}</li>
+                      ))}
+                    </ul>
+                    
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button className="w-full mt-4" variant="outline">
+                          Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle className="flex items-center gap-2">
+                            <IconComponent className="h-6 w-6 text-primary" />
+                            {solution.title}
+                          </DialogTitle>
+                          <DialogDescription>
+                            {solution.fullDescription}
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="space-y-6">
+                          <div>
+                            <h4 className="font-semibold mb-3">Key Benefits</h4>
+                            <ul className="space-y-2">
+                              {solution.benefits.map((benefit, index) => (
+                                <li key={index} className="flex items-start gap-2">
+                                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                                  <span className="text-sm">{benefit}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold mb-3">Use Cases</h4>
+                            <ul className="space-y-2">
+                              {solution.useCases.map((useCase, index) => (
+                                <li key={index} className="flex items-start gap-2">
+                                  <ArrowRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                                  <span className="text-sm">{useCase}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="flex gap-2">
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button className="flex-1">
+                                  <Mail className="mr-2 h-4 w-4" />
+                                  Get Started
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                  <DialogTitle>Get Started with {solution.title}</DialogTitle>
+                                  <DialogDescription>
+                                    Contact our team to learn how {solution.title} can transform your business.
+                                  </DialogDescription>
+                                </DialogHeader>
+                                {isContactSubmitted ? (
+                                  <div className="flex flex-col items-center justify-center py-8">
+                                    <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                                    <h3 className="text-lg font-semibold mb-2">Request Sent!</h3>
+                                    <p className="text-muted-foreground text-center">
+                                      Our {solution.title} specialists will contact you soon.
+                                    </p>
+                                  </div>
+                                ) : (
+                                  <form onSubmit={handleContactSubmit} className="space-y-4">
+                                    <div className="grid grid-cols-2 gap-4">
+                                      <div className="space-y-2">
+                                        <Label htmlFor="name">Name</Label>
+                                        <Input
+                                          id="name"
+                                          name="name"
+                                          value={contactForm.name}
+                                          onChange={handleInputChange}
+                                          required
+                                        />
+                                      </div>
+                                      <div className="space-y-2">
+                                        <Label htmlFor="email">Email</Label>
+                                        <Input
+                                          id="email"
+                                          name="email"
+                                          type="email"
+                                          value={contactForm.email}
+                                          onChange={handleInputChange}
+                                          required
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                      <Label htmlFor="company">Company</Label>
+                                      <Input
+                                        id="company"
+                                        name="company"
+                                        value={contactForm.company}
+                                        onChange={handleInputChange}
+                                      />
+                                    </div>
+                                    <div className="space-y-2">
+                                      <Label htmlFor="message">Tell us about your needs</Label>
+                                      <Textarea
+                                        id="message"
+                                        name="message"
+                                        value={contactForm.message}
+                                        onChange={handleInputChange}
+                                        rows={3}
+                                        placeholder={`How can ${solution.title} help your organization?`}
+                                        required
+                                      />
+                                    </div>
+                                    <Button type="submit" className="w-full">
+                                      Send Request
+                                    </Button>
+                                  </form>
+                                )}
+                              </DialogContent>
+                            </Dialog>
+                            <Button variant="outline" onClick={downloadPDF}>
+                              <FileText className="mr-2 h-4 w-4" />
+                              Download Spec
+                            </Button>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </CardContent>
+                </Card>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -165,48 +559,133 @@ function App() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "NowGo Urban Mirror",
-                description: "Urban infrastructure optimization with AI",
-                category: "Smart Cities"
-              },
-              {
-                title: "Earth Guard & GEIH",
-                description: "Environmental protection powered by AI",
-                category: "Sustainability"
-              },
-              {
-                title: "100% AI Hospital",
-                description: "Fully integrated intelligent healthcare system",
-                category: "Healthcare"
-              },
-              {
-                title: "AI-Based Schools",
-                description: "Personalized and scalable education",
-                category: "Education"
-              },
-              {
-                title: "Twinverse Studios",
-                description: "Music, cinema and storytelling with AI",
-                category: "Entertainment"
-              },
-              {
-                title: "AgriAI",
-                description: "Smart farming and AI-driven food systems",
-                category: "Agritech"
-              }
-            ].map((project, index) => (
-              <Card key={index} className="card-hover">
+            {projects.map((project) => (
+              <Card key={project.id} className="card-hover">
                 <CardHeader>
                   <Badge variant="secondary" className="w-fit">{project.category}</Badge>
                   <CardTitle className="text-lg">{project.title}</CardTitle>
                   <CardDescription>{project.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button variant="outline" size="sm">
-                    View Details <ArrowRight className="ml-2 h-3 w-3" />
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        View Details <ArrowRight className="ml-2 h-3 w-3" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[700px] max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <div className="flex items-center justify-between">
+                          <DialogTitle>{project.title}</DialogTitle>
+                          <Badge variant="outline">{project.status}</Badge>
+                        </div>
+                        <DialogDescription>
+                          {project.fullDescription}
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-6">
+                        <div>
+                          <h4 className="font-semibold mb-3">Key Features</h4>
+                          <ul className="space-y-2">
+                            {project.features.map((feature, index) => (
+                              <li key={index} className="flex items-start gap-2">
+                                <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                                <span className="text-sm">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-3">Technologies</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies.map((tech, index) => (
+                              <Badge key={index} variant="secondary">{tech}</Badge>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button className="flex-1">
+                                <Mail className="mr-2 h-4 w-4" />
+                                Learn More
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px]">
+                              <DialogHeader>
+                                <DialogTitle>Learn More About {project.title}</DialogTitle>
+                                <DialogDescription>
+                                  Get detailed information about this innovative project.
+                                </DialogDescription>
+                              </DialogHeader>
+                              {isContactSubmitted ? (
+                                <div className="flex flex-col items-center justify-center py-8">
+                                  <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                                  <h3 className="text-lg font-semibold mb-2">Request Sent!</h3>
+                                  <p className="text-muted-foreground text-center">
+                                    Our project team will send you detailed information about {project.title}.
+                                  </p>
+                                </div>
+                              ) : (
+                                <form onSubmit={handleContactSubmit} className="space-y-4">
+                                  <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                      <Label htmlFor="name">Name</Label>
+                                      <Input
+                                        id="name"
+                                        name="name"
+                                        value={contactForm.name}
+                                        onChange={handleInputChange}
+                                        required
+                                      />
+                                    </div>
+                                    <div className="space-y-2">
+                                      <Label htmlFor="email">Email</Label>
+                                      <Input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        value={contactForm.email}
+                                        onChange={handleInputChange}
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="space-y-2">
+                                    <Label htmlFor="company">Company/Organization</Label>
+                                    <Input
+                                      id="company"
+                                      name="company"
+                                      value={contactForm.company}
+                                      onChange={handleInputChange}
+                                    />
+                                  </div>
+                                  <div className="space-y-2">
+                                    <Label htmlFor="message">Specific interests</Label>
+                                    <Textarea
+                                      id="message"
+                                      name="message"
+                                      value={contactForm.message}
+                                      onChange={handleInputChange}
+                                      rows={3}
+                                      placeholder={`What aspects of ${project.title} interest you most?`}
+                                    />
+                                  </div>
+                                  <Button type="submit" className="w-full">
+                                    Request Information
+                                  </Button>
+                                </form>
+                              )}
+                            </DialogContent>
+                          </Dialog>
+                          <Button variant="outline" onClick={downloadPDF}>
+                            <FileText className="mr-2 h-4 w-4" />
+                            Project Brief
+                          </Button>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </CardContent>
               </Card>
             ))}
@@ -247,13 +726,72 @@ function App() {
                   cities through autonomous agents.
                 </p>
                 <div className="flex gap-4">
-                  <Button>
+                  <Button onClick={downloadPDF}>
                     <Download className="mr-2 h-4 w-4" />
                     Download PDF
                   </Button>
-                  <Button variant="outline">
-                    View Abstract
-                  </Button>
+                  
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline">
+                        View Abstract
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle>Research Abstract</DialogTitle>
+                        <DialogDescription>
+                          Enterprise Artificial Intelligence in the Smart Cities Era
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">Abstract</h4>
+                          <p className="text-sm text-muted-foreground">
+                            This comprehensive study examines the transformative impact of enterprise artificial intelligence 
+                            in the context of smart city development. We analyze three critical components: Custom Large 
+                            Language Models (LLMs) tailored for specific industry verticals, Infrastructure as a Service 
+                            (IaaS) solutions designed for enterprise AI workloads, and Autonomous Agents capable of 
+                            managing complex urban and enterprise systems.
+                          </p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">Key Findings</h4>
+                          <ul className="space-y-2 text-sm text-muted-foreground">
+                            <li>• Custom LLMs show 40% improved accuracy in domain-specific tasks</li>
+                            <li>• Tailored IaaS reduces operational costs by 35% while improving scalability</li>
+                            <li>• Autonomous agents enable 24/7 system management with 99.9% uptime</li>
+                            <li>• Integration with smart city infrastructure creates synergistic benefits</li>
+                            <li>• Sustainable AI practices reduce energy consumption by 25%</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">Authors</h4>
+                          <p className="text-sm text-muted-foreground">
+                            NowGo AI Research Team, in collaboration with leading universities and industry partners.
+                          </p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">Publication Details</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Published: December 2024<br />
+                            Pages: 45<br />
+                            DOI: 10.1000/nowgo.ai.2024.001
+                          </p>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button onClick={downloadPDF} className="flex-1">
+                            <Download className="mr-2 h-4 w-4" />
+                            Download Full Paper
+                          </Button>
+                          <Button variant="outline" onClick={() => window.open('mailto:research@nowgo.ai?subject=Research Inquiry')}>
+                            <Mail className="mr-2 h-4 w-4" />
+                            Contact Authors
+                          </Button>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardContent>
             </Card>
@@ -285,6 +823,163 @@ function App() {
                   <Users className="h-5 w-5 text-primary" />
                   <span>Global multidisciplinary team</span>
                 </div>
+              </div>
+              <div className="mt-6">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button>
+                      <Users className="mr-2 h-4 w-4" />
+                      Learn More About Us
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle>About NowGo AI</DialogTitle>
+                      <DialogDescription>
+                        Transforming the future through enterprise artificial intelligence
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="font-semibold mb-3">Our Mission</h4>
+                        <p className="text-sm text-muted-foreground">
+                          To democratize artificial intelligence by creating personalized, sustainable, 
+                          and scalable AI solutions that empower enterprises and smart cities worldwide.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-3">Our Vision</h4>
+                        <p className="text-sm text-muted-foreground">
+                          A world where AI seamlessly integrates with human intelligence to solve 
+                          complex global challenges and create sustainable prosperity for all.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-3">Core Values</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span className="text-sm">Innovation with Purpose</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span className="text-sm">Sustainable Technology</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span className="text-sm">Global Collaboration</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span className="text-sm">Ethical AI Development</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-3">Global Presence</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <p className="font-medium">Americas</p>
+                            <p className="text-sm text-muted-foreground">Brasília (HQ), São Paulo, New York</p>
+                          </div>
+                          <div>
+                            <p className="font-medium">Europe</p>
+                            <p className="text-sm text-muted-foreground">London, Berlin, Amsterdam</p>
+                          </div>
+                          <div>
+                            <p className="font-medium">Asia</p>
+                            <p className="text-sm text-muted-foreground">Singapore, Tokyo, Mumbai</p>
+                          </div>
+                          <div>
+                            <p className="font-medium">Africa</p>
+                            <p className="text-sm text-muted-foreground">Cape Town, Lagos</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex gap-2">
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button className="flex-1">
+                              <Mail className="mr-2 h-4 w-4" />
+                              Join Our Team
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="sm:max-w-[425px]">
+                            <DialogHeader>
+                              <DialogTitle>Join NowGo AI</DialogTitle>
+                              <DialogDescription>
+                                Be part of the AI revolution. Send us your information and we'll get in touch about opportunities.
+                              </DialogDescription>
+                            </DialogHeader>
+                            {isContactSubmitted ? (
+                              <div className="flex flex-col items-center justify-center py-8">
+                                <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                                <h3 className="text-lg font-semibold mb-2">Application Received!</h3>
+                                <p className="text-muted-foreground text-center">
+                                  Thank you for your interest. Our HR team will review your information.
+                                </p>
+                              </div>
+                            ) : (
+                              <form onSubmit={handleContactSubmit} className="space-y-4">
+                                <div className="grid grid-cols-2 gap-4">
+                                  <div className="space-y-2">
+                                    <Label htmlFor="name">Name</Label>
+                                    <Input
+                                      id="name"
+                                      name="name"
+                                      value={contactForm.name}
+                                      onChange={handleInputChange}
+                                      required
+                                    />
+                                  </div>
+                                  <div className="space-y-2">
+                                    <Label htmlFor="email">Email</Label>
+                                    <Input
+                                      id="email"
+                                      name="email"
+                                      type="email"
+                                      value={contactForm.email}
+                                      onChange={handleInputChange}
+                                      required
+                                    />
+                                  </div>
+                                </div>
+                                <div className="space-y-2">
+                                  <Label htmlFor="company">Current Position/Company</Label>
+                                  <Input
+                                    id="company"
+                                    name="company"
+                                    value={contactForm.company}
+                                    onChange={handleInputChange}
+                                  />
+                                </div>
+                                <div className="space-y-2">
+                                  <Label htmlFor="message">Tell us about your background and interests</Label>
+                                  <Textarea
+                                    id="message"
+                                    name="message"
+                                    value={contactForm.message}
+                                    onChange={handleInputChange}
+                                    rows={4}
+                                    placeholder="What role interests you? What's your experience with AI?"
+                                    required
+                                  />
+                                </div>
+                                <Button type="submit" className="w-full">
+                                  Submit Application
+                                </Button>
+                              </form>
+                            )}
+                          </DialogContent>
+                        </Dialog>
+                        <Button variant="outline" onClick={() => window.open('mailto:partnerships@nowgo.ai')}>
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          Partnerships
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -328,11 +1023,88 @@ function App() {
             in a sustainable and scalable way.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
-              <Mail className="mr-2 h-5 w-5" />
-              Contact Us
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
+                  <Mail className="mr-2 h-5 w-5" />
+                  Contact Us
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Start Your AI Transformation</DialogTitle>
+                  <DialogDescription>
+                    Let's discuss how NowGo AI can help transform your business.
+                  </DialogDescription>
+                </DialogHeader>
+                {isContactSubmitted ? (
+                  <div className="flex flex-col items-center justify-center py-8">
+                    <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                    <h3 className="text-lg font-semibold mb-2">Thank You!</h3>
+                    <p className="text-muted-foreground text-center">
+                      We'll be in touch within 24 hours to discuss your AI transformation journey.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleContactSubmit} className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input
+                          id="name"
+                          name="name"
+                          value={contactForm.name}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={contactForm.email}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="company">Company</Label>
+                      <Input
+                        id="company"
+                        name="company"
+                        value={contactForm.company}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="message">How can we help transform your business?</Label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={contactForm.message}
+                        onChange={handleInputChange}
+                        rows={4}
+                        placeholder="Tell us about your AI transformation goals..."
+                        required
+                      />
+                    </div>
+                    <Button type="submit" className="w-full">
+                      Start Transformation
+                    </Button>
+                  </form>
+                )}
+              </DialogContent>
+            </Dialog>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-white text-white hover:bg-white hover:text-primary"
+              onClick={downloadPDF}
+            >
               <Download className="mr-2 h-5 w-5" />
               Download Brochure
             </Button>
@@ -345,39 +1117,128 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
+              <div className="flex items-center space-x-2 mb-4 cursor-pointer" onClick={() => scrollToSection('home')}>
                 <span className="text-xl font-bold text-gradient">NowGo AI</span>
               </div>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-muted-foreground text-sm mb-4">
                 Transforming the future through enterprise artificial intelligence.
               </p>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                <span>Brasília, Brazil</span>
+              </div>
             </div>
             
             <div>
               <h4 className="font-semibold mb-4">Solutions</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Custom LLMs</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Tailored IaaS</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Autonomous Agents</a></li>
+                <li><button onClick={() => scrollToSection('solutions')} className="hover:text-primary transition-colors text-left">Custom LLMs</button></li>
+                <li><button onClick={() => scrollToSection('solutions')} className="hover:text-primary transition-colors text-left">Tailored IaaS</button></li>
+                <li><button onClick={() => scrollToSection('solutions')} className="hover:text-primary transition-colors text-left">Autonomous Agents</button></li>
               </ul>
             </div>
             
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Team</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Partnerships</a></li>
+                <li><button onClick={() => scrollToSection('about')} className="hover:text-primary transition-colors text-left">About</button></li>
+                <li><button onClick={() => window.open('mailto:careers@nowgo.ai')} className="hover:text-primary transition-colors text-left">Careers</button></li>
+                <li><button onClick={() => window.open('mailto:partnerships@nowgo.ai')} className="hover:text-primary transition-colors text-left">Partnerships</button></li>
+                <li><button onClick={() => scrollToSection('research')} className="hover:text-primary transition-colors text-left">Research</button></li>
               </ul>
             </div>
             
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>Brasília, Brazil</li>
-                <li>contact@nowgo.ai</li>
-                <li>+55 (61) 9999-9999</li>
+                <li className="flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  <button onClick={() => window.open('mailto:contact@nowgo.ai')} className="hover:text-primary transition-colors">
+                    contact@nowgo.ai
+                  </button>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  <button onClick={() => window.open('tel:+5561999999999')} className="hover:text-primary transition-colors">
+                    +55 (61) 9999-9999
+                  </button>
+                </li>
+                <li>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm" className="mt-2">
+                        <Mail className="mr-2 h-4 w-4" />
+                        Get in Touch
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Contact NowGo AI</DialogTitle>
+                        <DialogDescription>
+                          We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                        </DialogDescription>
+                      </DialogHeader>
+                      {isContactSubmitted ? (
+                        <div className="flex flex-col items-center justify-center py-8">
+                          <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                          <h3 className="text-lg font-semibold mb-2">Message Sent!</h3>
+                          <p className="text-muted-foreground text-center">
+                            Thank you for contacting us. We'll get back to you soon.
+                          </p>
+                        </div>
+                      ) : (
+                        <form onSubmit={handleContactSubmit} className="space-y-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="name">Name</Label>
+                              <Input
+                                id="name"
+                                name="name"
+                                value={contactForm.name}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email">Email</Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={contactForm.email}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="company">Company</Label>
+                            <Input
+                              id="company"
+                              name="company"
+                              value={contactForm.company}
+                              onChange={handleInputChange}
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="message">Message</Label>
+                            <Textarea
+                              id="message"
+                              name="message"
+                              value={contactForm.message}
+                              onChange={handleInputChange}
+                              rows={4}
+                              required
+                            />
+                          </div>
+                          <Button type="submit" className="w-full">
+                            Send Message
+                          </Button>
+                        </form>
+                      )}
+                    </DialogContent>
+                  </Dialog>
+                </li>
               </ul>
             </div>
           </div>
