@@ -1187,7 +1187,7 @@ function App() {
               working with Hélio and the NowGo AI team.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="p-6 hover:shadow-lg transition-shadow">
               <CardContent className="p-0">
                 <div className="flex items-start gap-4">
@@ -1263,6 +1263,71 @@ function App() {
                       ))}
                     </div>
                     <p className="text-sm text-muted-foreground mt-2">Global Enterprise</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-start gap-4">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div>
+                    <p className="text-muted-foreground mb-4">
+                      Having Hélio, from NowGo AI, as a mentor in the latest cohort of startups at Bluefields Accelerator was a privilege. 
+                      His expertise in artificial intelligence and strategic vision were essential to the entrepreneurs' success, providing 
+                      insights that transformed business strategies and broadened market perspectives. During the MVP bootcamp, Hélio made 
+                      a direct impact on the mentoring sessions, receiving 100% positive feedback from the startup founders.
+                    </p>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-sm">★</span>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">Ana Paula Costa</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-start gap-4">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div>
+                    <p className="text-muted-foreground mb-4">
+                      The partnership with NowGo AI was essential for the development of Artificial Intelligence projects within the 
+                      Inovaskill program, which involved companies from the Jacto Group and others in the region. The support provided 
+                      was crucial in achieving practical and innovative results. This collaboration highlights how the combination of 
+                      expertise and purpose can turn challenges into effective and impactful solutions.
+                    </p>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-sm">★</span>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">Tiago Goulart, CEO and Founder, Mentto</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-start gap-4">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div>
+                    <p className="text-muted-foreground mb-4">
+                      NowGo AI has been transforming education and the business ecosystem in São Paulo. In partnership with Hélio from 
+                      NowGo AI, the first Software Development and Artificial Intelligence curriculum was created at the São Paulo 
+                      Technology College, preparing professionals for the 4.0 market and benefiting over 80,000 young talents across the state.
+                    </p>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-sm">★</span>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">Matheus, DEV, Intercept Rx</p>
                   </div>
                 </div>
               </CardContent>
