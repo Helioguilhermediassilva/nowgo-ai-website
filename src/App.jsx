@@ -1133,6 +1133,144 @@ function App() {
         </div>
       </section>
 
+      {/* Founder Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">Meet Our Founder</h2>
+              <h3 className="text-xl font-semibold text-primary mb-4">Hélio Guilherme Dias Silva</h3>
+              <p className="text-lg text-muted-foreground mb-6">
+                Visionary leader and AI expert with extensive experience in enterprise artificial intelligence. 
+                Hélio founded NowGo AI with the mission to democratize AI technology and empower organizations 
+                worldwide through innovative, sustainable solutions.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <Award className="h-5 w-5 text-primary" />
+                  <span>AI Strategy & Implementation Expert</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Users className="h-5 w-5 text-primary" />
+                  <span>Enterprise Mentorship & Consulting</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Globe className="h-5 w-5 text-primary" />
+                  <span>Global Technology Leadership</span>
+                </div>
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg p-8">
+              <div className="text-center">
+                <div className="w-32 h-32 bg-gradient-to-br from-primary to-secondary rounded-full mx-auto mb-6 flex items-center justify-center">
+                  <Users className="h-16 w-16 text-white" />
+                </div>
+                <h4 className="text-xl font-semibold mb-2">Hélio Guilherme Dias Silva</h4>
+                <p className="text-primary font-medium mb-4">Founder & CEO, NowGo AI</p>
+                <p className="text-sm text-muted-foreground">
+                  "Our mission is to make AI accessible, practical, and transformative for every organization, 
+                  regardless of size or industry."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-muted/50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">What Our Clients Say</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Trusted by medium and large enterprises worldwide. Here's what our clients say about 
+              working with Hélio and the NowGo AI team.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-start gap-4">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div>
+                    <p className="text-muted-foreground mb-4">
+                      Hélio is a highly experienced professional, and every mentoring session with him is a masterclass. 
+                      It's truly a privilege to learn from him – no doubt, a valuable use of time.
+                    </p>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-sm">★</span>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">Enterprise Client</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-start gap-4">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div>
+                    <p className="text-muted-foreground mb-4">
+                      Once again, Hélio amazed us with his depth of knowledge and his genuine commitment to helping. 
+                      He even studied our case beforehand and developed a prototype as an example. A fantastic mentoring session – we're extremely grateful!
+                    </p>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-sm">★</span>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">Technology Company</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-start gap-4">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div>
+                    <p className="text-muted-foreground mb-4">
+                      Hélio led the session with great expertise. He's extremely skilled and knowledgeable. 
+                      We're already scheduling a follow-up session to go even deeper.
+                    </p>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-sm">★</span>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">Fortune 500 Company</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <CardContent className="p-0">
+                <div className="flex items-start gap-4">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div>
+                    <p className="text-muted-foreground mb-4">
+                      Our session was exceptional. He brought us valuable insights for our project and introduced AI tools 
+                      that can really accelerate our work. Looking forward to our next meeting!
+                    </p>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-sm">★</span>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">Global Enterprise</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 hero-gradient text-white">
         <div className="container mx-auto px-4 text-center">
