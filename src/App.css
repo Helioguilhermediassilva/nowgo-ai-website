@@ -1,0 +1,154 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.75rem;
+  /* NowGo AI Original Colors */
+  --nowgo-navy: #1a237e;
+  --nowgo-white: #ffffff;
+  --nowgo-graphite: #37474f;
+  --nowgo-neon-green: #00e676;
+  --nowgo-teal: #00695c;
+  --nowgo-gold: #ffc107;
+  
+  --background: var(--nowgo-white);
+  --foreground: var(--nowgo-graphite);
+  --card: var(--nowgo-white);
+  --card-foreground: var(--nowgo-graphite);
+  --popover: var(--nowgo-white);
+  --popover-foreground: var(--nowgo-graphite);
+  --primary: var(--nowgo-navy);
+  --primary-foreground: var(--nowgo-white);
+  --secondary: #f5f5f5;
+  --secondary-foreground: var(--nowgo-graphite);
+  --muted: #f5f5f5;
+  --muted-foreground: #6b7280;
+  --accent: var(--nowgo-neon-green);
+  --accent-foreground: var(--nowgo-white);
+  --destructive: #ef4444;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: var(--nowgo-navy);
+  --chart-1: var(--nowgo-navy);
+  --chart-2: var(--nowgo-teal);
+  --chart-3: var(--nowgo-neon-green);
+  --chart-4: var(--nowgo-gold);
+  --chart-5: var(--nowgo-graphite);
+  --sidebar: var(--nowgo-white);
+  --sidebar-foreground: var(--nowgo-graphite);
+  --sidebar-primary: var(--nowgo-navy);
+  --sidebar-primary-foreground: var(--nowgo-white);
+  --sidebar-accent: #f5f5f5;
+  --sidebar-accent-foreground: var(--nowgo-graphite);
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: var(--nowgo-navy);
+}
+
+.dark {
+  --background: var(--nowgo-graphite);
+  --foreground: var(--nowgo-white);
+  --card: #2d3748;
+  --card-foreground: var(--nowgo-white);
+  --popover: #2d3748;
+  --popover-foreground: var(--nowgo-white);
+  --primary: var(--nowgo-neon-green);
+  --primary-foreground: var(--nowgo-graphite);
+  --secondary: #4a5568;
+  --secondary-foreground: var(--nowgo-white);
+  --muted: #4a5568;
+  --muted-foreground: #a0aec0;
+  --accent: var(--nowgo-neon-green);
+  --accent-foreground: var(--nowgo-graphite);
+  --destructive: #f56565;
+  --border: #4a5568;
+  --input: #4a5568;
+  --ring: var(--nowgo-neon-green);
+  --chart-1: var(--nowgo-neon-green);
+  --chart-2: var(--nowgo-teal);
+  --chart-3: var(--nowgo-gold);
+  --chart-4: var(--nowgo-navy);
+  --chart-5: var(--nowgo-white);
+  --sidebar: #2d3748;
+  --sidebar-foreground: var(--nowgo-white);
+  --sidebar-primary: var(--nowgo-neon-green);
+  --sidebar-primary-foreground: var(--nowgo-graphite);
+  --sidebar-accent: #4a5568;
+  --sidebar-accent-foreground: var(--nowgo-white);
+  --sidebar-border: #4a5568;
+  --sidebar-ring: var(--nowgo-neon-green);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  /* Custom NowGo AI Styles */
+  .hero-gradient {
+    background: linear-gradient(135deg, var(--nowgo-navy) 0%, var(--nowgo-teal) 100%);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, var(--nowgo-navy) 0%, var(--nowgo-neon-green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+}
+
