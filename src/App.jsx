@@ -1242,7 +1242,7 @@ function App() {
                         <span key={i} className="text-sm">★</span>
                       ))}
                     </div>
-                    <p className="text-sm text-muted-foreground mt-2">Fortune 500 Company</p>
+                    <p className="text-sm text-muted-foreground mt-2">Enterprise Company</p>
                   </div>
                 </div>
               </CardContent>
@@ -1284,7 +1284,7 @@ function App() {
                         <span key={i} className="text-sm">★</span>
                       ))}
                     </div>
-                    <p className="text-sm text-muted-foreground mt-2">Ana Paula Costa</p>
+                    <p className="text-sm text-muted-foreground mt-2">Ana Paula Costa, Bluefields</p>
                   </div>
                 </div>
               </CardContent>
@@ -1312,7 +1312,7 @@ function App() {
               </CardContent>
             </Card>
 
-            <Card className="p-6 hover:shadow-lg transition-shadow">
+            <Card className="p-6 hover:shadow-lg transition-shadow lg:col-start-2 lg:col-end-3">
               <CardContent className="p-0">
                 <div className="flex items-start gap-4">
                   <div className="text-4xl text-primary opacity-50">"</div>
