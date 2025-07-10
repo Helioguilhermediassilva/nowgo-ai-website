@@ -150,5 +150,17 @@
   .smooth-scroll {
     scroll-behavior: smooth;
   }
+  
+  /* Ensure button text is always visible */
+  .schedule-demo-btn {
+    transition: none !important;
+  }
+  
+  .schedule-demo-btn span {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    transition: none !important;
+  }
 }
 

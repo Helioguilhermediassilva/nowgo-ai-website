@@ -71,10 +71,11 @@ function App() {
   }
 
   const downloadPDF = () => {
-    // Simulate PDF download
+    // Real PDF download
     const link = document.createElement('a')
-    link.href = 'data:application/pdf;base64,JVBERi0xLjQKJdPr6eEKMSAwIG9iago8PAovVGl0bGUgKEVudGVycHJpc2UgQUkgaW4gU21hcnQgQ2l0aWVzKQovQ3JlYXRvciAoTm93R28gQUkpCi9Qcm9kdWNlciAoTm93R28gQUkpCi9DcmVhdGlvbkRhdGUgKEQ6MjAyNDEyMTApCj4+CmVuZG9iagp4cmVmCjAgMQowMDAwMDAwMDAwIDY1NTM1IGYgCnRyYWlsZXIKPDwKL1NpemUgMQovUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKMTczCiUlRU9G'
-    link.download = 'NowGo-AI-Enterprise-AI-Smart-Cities.pdf'
+    link.href = '/artigo_cientifico_nowgo_ai_final.pdf'
+    link.download = 'Enterprise-AI-Smart-Cities-NowGo-AI.pdf'
+    link.target = '_blank'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -378,10 +379,10 @@ function App() {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-white text-white hover:bg-white hover:text-primary"
+                  className="border-white text-white hover:bg-white hover:text-primary transition-none schedule-demo-btn"
                 >
                   <Users className="mr-2 h-5 w-5" />
-                  Schedule a Demonstration
+                  <span className="opacity-100">Schedule a Demonstration</span>
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
@@ -855,36 +856,48 @@ function App() {
                       <div className="space-y-4">
                         <div>
                           <h4 className="font-semibold mb-2">Abstract</h4>
-                          <p className="text-sm text-muted-foreground">
-                            This comprehensive study examines the transformative impact of enterprise artificial intelligence 
-                            in the context of smart city development. We analyze three critical components: Custom Large 
-                            Language Models (LLMs) tailored for specific industry verticals, Infrastructure as a Service 
-                            (IaaS) solutions designed for enterprise AI workloads, and Autonomous Agents capable of 
-                            managing complex urban and enterprise systems.
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Artificial intelligence (AI) is redefining the global business landscape, with the market 
+                            projected to reach USD 2.7 trillion by 2030. This article presents a comprehensive 
+                            analysis of practical AI applications in enterprises, focusing on the creation of custom 
+                            large language models (LLMs), tailored infrastructure as a service (IaaS), and 
+                            integration with smart cities through autonomous agents. Using NowGo AI as the main 
+                            case study, this research examines how specialized companies are developing 
+                            personalized AI solutions to meet specific demands of medium and large 
+                            organizations. The methodology combines document analysis, systematic literature 
+                            review, and exploratory case study. Results indicate that 75% of large-scale companies 
+                            have already actively implemented AI, with 40% growth expected for 2025. The 
+                            research reveals that the convergence between enterprise AI and smart cities, 
+                            mediated by autonomous agents, represents a significant opportunity for sustainable 
+                            digital transformation. Main contributions include a conceptual framework for 
+                            enterprise AI implementation, detailed analysis of LLM customization methodologies, 
+                            and identification of synergies between corporate solutions and intelligent urban 
+                            infrastructure.
                           </p>
                         </div>
                         <div>
                           <h4 className="font-semibold mb-2">Key Findings</h4>
                           <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li>• Custom LLMs show 40% improved accuracy in domain-specific tasks</li>
-                            <li>• Tailored IaaS reduces operational costs by 35% while improving scalability</li>
-                            <li>• Autonomous agents enable 24/7 system management with 99.9% uptime</li>
-                            <li>• Integration with smart city infrastructure creates synergistic benefits</li>
-                            <li>• Sustainable AI practices reduce energy consumption by 25%</li>
+                            <li>• 75% of large-scale companies have actively implemented AI solutions</li>
+                            <li>• USD 2.7 trillion projected market value by 2030</li>
+                            <li>• 40% growth expected for enterprise AI adoption in 2025</li>
+                            <li>• Custom LLMs provide significant competitive advantages for specific sectors</li>
+                            <li>• Autonomous agents enable seamless integration between enterprise and smart city systems</li>
+                            <li>• Sustainable digital transformation through AI-driven urban infrastructure</li>
                           </ul>
                         </div>
                         <div>
                           <h4 className="font-semibold mb-2">Authors</h4>
                           <p className="text-sm text-muted-foreground">
-                            NowGo AI Research Team, in collaboration with leading universities and industry partners.
+                            NowGo AI Research Team
                           </p>
                         </div>
                         <div>
                           <h4 className="font-semibold mb-2">Publication Details</h4>
                           <p className="text-sm text-muted-foreground">
-                            Published: December 2024<br />
-                            Pages: 45<br />
-                            DOI: 10.1000/nowgo.ai.2024.001
+                            Published: July 2025<br />
+                            Pages: 20<br />
+                            Keywords: Enterprise Artificial Intelligence, Custom LLMs, IaaS, Smart Cities, Autonomous Agents, Digital Transformation
                           </p>
                         </div>
                         <div className="flex gap-2">
