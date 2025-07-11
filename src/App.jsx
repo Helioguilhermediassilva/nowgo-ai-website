@@ -32,7 +32,8 @@ function App() {
   const [isDemoSubmitted, setIsDemoSubmitted] = useState(false)
   const [isDemoLoading, setIsDemoLoading] = useState(false)
   const [demoError, setDemoError] = useState('')
-
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  
   const [partnershipForm, setPartnershipForm] = useState({
     name: '',
     email: '',
@@ -610,20 +611,67 @@ function App() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="demo-solution">Solution of Interest</Label>
-                    <select
-                      id="demo-solution"
-                      name="solution"
-                      value={demoForm.solution}
-                      onChange={handleDemoInputChange}
-                      className="w-full p-2 border rounded-md"
-                      required
-                    >
-                      <option value="">Select a solution</option>
-                      <option value="custom-llms">Custom LLMs</option>
-                      <option value="tailored-iaas">Tailored IaaS</option>
-                      <option value="autonomous-agents">Autonomous Agents</option>
-                      <option value="all-solutions">All Solutions</option>
-                    </select>
+                    <div className="relative">
+                      <button
+                        type="button"
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className="w-full p-2 border rounded-md text-left bg-white flex justify-between items-center"
+                        required
+                      >
+                        <span className={demoForm.solution ? 'text-black' : 'text-gray-500'}>
+                          {demoForm.solution ? 
+                            (demoForm.solution === 'custom-llms' ? 'Custom LLMs' :
+                             demoForm.solution === 'tailored-iaas' ? 'Tailored IaaS' :
+                             demoForm.solution === 'autonomous-agents' ? 'Autonomous Agents' :
+                             demoForm.solution === 'all-solutions' ? 'All Solutions' : 'Select a solution')
+                            : 'Select a solution'
+                          }
+                        </span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      {isDropdownOpen && (
+                        <div className="absolute z-10 w-full mt-1 bg-white border rounded-md shadow-lg">
+                          <div 
+                            className="p-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => {
+                              setDemoForm(prev => ({...prev, solution: 'custom-llms'}))
+                              setIsDropdownOpen(false)
+                            }}
+                          >
+                            Custom LLMs
+                          </div>
+                          <div 
+                            className="p-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => {
+                              setDemoForm(prev => ({...prev, solution: 'tailored-iaas'}))
+                              setIsDropdownOpen(false)
+                            }}
+                          >
+                            Tailored IaaS
+                          </div>
+                          <div 
+                            className="p-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => {
+                              setDemoForm(prev => ({...prev, solution: 'autonomous-agents'}))
+                              setIsDropdownOpen(false)
+                            }}
+                          >
+                            Autonomous Agents
+                          </div>
+                          <div 
+                            className="p-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => {
+                              setDemoForm(prev => ({...prev, solution: 'all-solutions'}))
+                              setIsDropdownOpen(false)
+                            }}
+                          >
+                            All Solutions
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="demo-date">Preferred Date</Label>
