@@ -517,7 +517,7 @@ function App() {
               <p className="text-muted-foreground">projected market by 2030</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-primary mb-2">4 Continents</div>
+              <div className="text-4xl font-bold text-primary mb-2">Global</div>
               <p className="text-muted-foreground">active global presence</p>
             </div>
           </div>
