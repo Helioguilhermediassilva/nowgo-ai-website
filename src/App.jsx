@@ -29,6 +29,15 @@ function App() {
   })
   const [isDemoSubmitted, setIsDemoSubmitted] = useState(false)
 
+  const [partnershipForm, setPartnershipForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    partnershipType: '',
+    message: ''
+  })
+  const [isPartnershipSubmitted, setIsPartnershipSubmitted] = useState(false)
+
   const handleContactSubmit = (e) => {
     e.preventDefault()
     // Simulate form submission
@@ -46,6 +55,16 @@ function App() {
     setTimeout(() => {
       setIsDemoSubmitted(false)
       setDemoForm({ name: '', email: '', company: '', solution: '', date: '', message: '' })
+    }, 3000)
+  }
+
+  const handlePartnershipSubmit = (e) => {
+    e.preventDefault()
+    // Simulate partnership form submission
+    setIsPartnershipSubmitted(true)
+    setTimeout(() => {
+      setIsPartnershipSubmitted(false)
+      setPartnershipForm({ name: '', email: '', company: '', partnershipType: '', message: '' })
     }, 3000)
   }
 
@@ -1093,10 +1112,92 @@ function App() {
                             )}
                           </DialogContent>
                         </Dialog>
-                        <Button variant="outline" onClick={() => window.open('mailto:partnerships@nowgo.ai')}>
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Partnerships
-                        </Button>
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="outline">
+                              <ExternalLink className="mr-2 h-4 w-4" />
+                              Partnerships
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="sm:max-w-[425px]">
+                            <DialogHeader>
+                              <DialogTitle>Partnership Opportunities</DialogTitle>
+                              <DialogDescription>
+                                Join forces with NowGo AI to create innovative AI solutions and expand global reach.
+                              </DialogDescription>
+                            </DialogHeader>
+                            {isPartnershipSubmitted ? (
+                              <div className="text-center py-8">
+                                <CheckCircle className="mx-auto h-12 w-12 text-green-500 mb-4" />
+                                <h3 className="text-lg font-semibold mb-2">Partnership Request Submitted!</h3>
+                                <p className="text-muted-foreground">We'll review your proposal and get back to you within 48 hours.</p>
+                              </div>
+                            ) : (
+                              <form onSubmit={handlePartnershipSubmit} className="space-y-4">
+                                <div className="grid grid-cols-2 gap-4">
+                                  <div>
+                                    <Label htmlFor="partnership-name">Name</Label>
+                                    <Input
+                                      id="partnership-name"
+                                      value={partnershipForm.name}
+                                      onChange={(e) => setPartnershipForm({...partnershipForm, name: e.target.value})}
+                                      required
+                                    />
+                                  </div>
+                                  <div>
+                                    <Label htmlFor="partnership-email">Email</Label>
+                                    <Input
+                                      id="partnership-email"
+                                      type="email"
+                                      value={partnershipForm.email}
+                                      onChange={(e) => setPartnershipForm({...partnershipForm, email: e.target.value})}
+                                      required
+                                    />
+                                  </div>
+                                </div>
+                                <div>
+                                  <Label htmlFor="partnership-company">Company/Organization</Label>
+                                  <Input
+                                    id="partnership-company"
+                                    value={partnershipForm.company}
+                                    onChange={(e) => setPartnershipForm({...partnershipForm, company: e.target.value})}
+                                    required
+                                  />
+                                </div>
+                                <div>
+                                  <Label htmlFor="partnership-type">Partnership Type</Label>
+                                  <select
+                                    id="partnership-type"
+                                    className="w-full p-2 border border-input rounded-md"
+                                    value={partnershipForm.partnershipType}
+                                    onChange={(e) => setPartnershipForm({...partnershipForm, partnershipType: e.target.value})}
+                                    required
+                                  >
+                                    <option value="">Select partnership type</option>
+                                    <option value="technology">Technology Integration</option>
+                                    <option value="reseller">Reseller/Channel Partner</option>
+                                    <option value="strategic">Strategic Alliance</option>
+                                    <option value="academic">Academic/Research</option>
+                                    <option value="other">Other</option>
+                                  </select>
+                                </div>
+                                <div>
+                                  <Label htmlFor="partnership-message">Partnership Proposal</Label>
+                                  <Textarea
+                                    id="partnership-message"
+                                    placeholder="Describe your partnership proposal and how we can collaborate..."
+                                    value={partnershipForm.message}
+                                    onChange={(e) => setPartnershipForm({...partnershipForm, message: e.target.value})}
+                                    required
+                                  />
+                                </div>
+                                <Button type="submit" className="w-full">
+                                  Submit Partnership Request
+                                </Button>
+                              </form>
+                            )}
+                          </DialogContent>
+                        </Dialog>
                       </div>
                     </div>
                   </DialogContent>
