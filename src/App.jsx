@@ -30,6 +30,8 @@ function App() {
     message: ''
   })
   const [isDemoSubmitted, setIsDemoSubmitted] = useState(false)
+  const [isDemoLoading, setIsDemoLoading] = useState(false)
+  const [demoError, setDemoError] = useState('')
 
   const [partnershipForm, setPartnershipForm] = useState({
     name: '',
@@ -108,6 +110,17 @@ function App() {
   const handleDemoSubmit = async (e) => {
     e.preventDefault()
     
+    // Limpar erros anteriores
+    setDemoError('')
+    setIsDemoLoading(true)
+    
+    // Validação básica
+    if (!demoForm.name || !demoForm.email || !demoForm.company || !demoForm.solution || !demoForm.date) {
+      setDemoError('Por favor, preencha todos os campos obrigatórios.')
+      setIsDemoLoading(false)
+      return
+    }
+    
     try {
       const emailData = {
         to: 'helio@nowgo.com.br',
@@ -132,13 +145,30 @@ function App() {
       
       if (result.success) {
         setIsDemoSubmitted(true)
+        setDemoError('')
+        
+        // Limpar formulário após 2 segundos
+        setTimeout(() => {
+          setDemoForm({ name: '', email: '', company: '', solution: '', date: '', message: '' })
+        }, 2000)
+        
+        // Fechar modal automaticamente após 4 segundos
         setTimeout(() => {
           setIsDemoSubmitted(false)
-          setDemoForm({ name: '', email: '', company: '', solution: '', date: '', message: '' })
-        }, 3000)
+          // Fechar o modal clicando no botão close
+          const closeButtons = document.querySelectorAll('[data-dialog-close]')
+          if (closeButtons.length > 0) {
+            closeButtons[closeButtons.length - 1].click()
+          }
+        }, 4000)
+      } else {
+        setDemoError(result.message || 'Desculpe, houve um erro ao enviar sua solicitação. Tente novamente.')
       }
     } catch (error) {
       console.error('Erro ao enviar demonstração:', error)
+      setDemoError('Erro de conexão. Verifique sua internet e tente novamente.')
+    } finally {
+      setIsDemoLoading(false)
     }
   }
 
@@ -618,9 +648,32 @@ function App() {
                       placeholder="Tell us about your specific needs or questions..."
                     />
                   </div>
-                  <Button type="submit" className="w-full">
-                    Schedule Demo
-                  </Button>
+                  
+                  {/* Mensagem de erro */}
+                  {demoError && (
+                    <div className="p-3 bg-red-50 border border-red-200 rounded-md">
+                      <p className="text-red-600 text-sm">{demoError}</p>
+                    </div>
+                  )}
+                  
+                  {/* Mensagem de sucesso */}
+                  {isDemoSubmitted && (
+                    <div className="p-4 bg-green-50 border border-green-200 rounded-md text-center">
+                      <CheckCircle className="h-8 w-8 text-green-600 mx-auto mb-2" />
+                      <h3 className="text-lg font-semibold text-green-800 mb-1">Thank You!</h3>
+                      <p className="text-green-600">Your demo request has been sent successfully. We'll contact you soon!</p>
+                    </div>
+                  )}
+                  
+                  {!isDemoSubmitted && (
+                    <Button 
+                      type="submit" 
+                      className="w-full" 
+                      disabled={isDemoLoading}
+                    >
+                      {isDemoLoading ? 'Sending...' : 'Schedule Demo'}
+                    </Button>
+                  )}
                 </form>
               </DialogContent>
             </Dialog>
