@@ -206,7 +206,7 @@ function App() {
       description: 'Personalized language models for all sectors',
       icon: Globe,
       features: [
-        'Fine-tuning for legal, healthcare, finance',
+        'Fine-tuning for all sectors',
         'ESG and sustainability models',
         'Integration with existing systems'
       ],
