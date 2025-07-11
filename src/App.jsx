@@ -203,7 +203,7 @@ function App() {
     {
       id: 'custom-llms',
       title: 'Custom LLMs',
-      description: 'Personalized language models for specific sectors',
+      description: 'Personalized language models for all sectors',
       icon: Globe,
       features: [
         'Fine-tuning for legal, healthcare, finance',
