@@ -17,6 +17,8 @@ function App() {
     message: ''
   })
   const [isContactSubmitted, setIsContactSubmitted] = useState(false)
+  const [isContactLoading, setIsContactLoading] = useState(false)
+  const [contactError, setContactError] = useState('')
   const [activeProject, setActiveProject] = useState(null)
   
   const [demoForm, setDemoForm] = useState({
@@ -41,6 +43,10 @@ function App() {
   const handleContactSubmit = async (e, solutionType = null) => {
     e.preventDefault()
     
+    // Limpar erros anteriores
+    setContactError('')
+    setIsContactLoading(true)
+    
     try {
       // Determinar o assunto baseado no tipo de solução
       let subject = `Nova mensagem de contato - ${contactForm.name} (${contactForm.company})`
@@ -48,7 +54,7 @@ function App() {
         subject = `Nova solicitação ${solutionType} - ${contactForm.name} (${contactForm.company})`
       }
       
-      // Enviar dados para webhook personalizado que enviará email real
+      // Enviar dados para o backend Flask
       const emailData = {
         to: 'helio@nowgo.com.br',
         subject: subject,
@@ -60,8 +66,7 @@ function App() {
         timestamp: new Date().toISOString()
       }
       
-      // Usar nosso backend Flask melhorado
-      const response = await fetch('http://localhost:5001/send-email', {
+      const response = await fetch('http://localhost:5001/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,22 +78,30 @@ function App() {
       
       if (result.success) {
         setIsContactSubmitted(true)
+        setContactError('')
+        
+        // Limpar formulário após 2 segundos
+        setTimeout(() => {
+          setContactForm({ name: '', email: '', company: '', message: '' })
+        }, 2000)
+        
         // Fechar modal automaticamente após 4 segundos
         setTimeout(() => {
           setIsContactSubmitted(false)
-          setContactForm({ name: '', email: '', company: '', message: '' })
           // Fechar o modal clicando no botão close
-          const closeButton = document.querySelector('[data-dialog-close]')
-          if (closeButton) {
-            closeButton.click()
+          const closeButtons = document.querySelectorAll('[data-dialog-close]')
+          if (closeButtons.length > 0) {
+            closeButtons[closeButtons.length - 1].click()
           }
         }, 4000)
       } else {
-        alert(result.message || 'Sorry, there was an error sending your message. Please try again.')
+        setContactError(result.message || 'Desculpe, houve um erro ao enviar sua mensagem. Tente novamente.')
       }
     } catch (error) {
       console.error('Erro ao enviar email:', error)
-      alert('Sorry, there was an error sending your message. Please try again.')
+      setContactError('Erro de conexão. Verifique sua internet e tente novamente.')
+    } finally {
+      setIsContactLoading(false)
     }
   }
 
@@ -367,6 +380,11 @@ function App() {
                   </div>
                 ) : (
                   <form onSubmit={handleContactSubmit} className="space-y-4">
+                    {contactError && (
+                      <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm">
+                        {contactError}
+                      </div>
+                    )}
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="name">Name</Label>
@@ -410,8 +428,8 @@ function App() {
                         required
                       />
                     </div>
-                    <Button type="submit" className="w-full">
-                      Send Message
+                    <Button type="submit" className="w-full" disabled={isContactLoading}>
+                      {isContactLoading ? 'Sending...' : 'Send Message'}
                     </Button>
                   </form>
                 )}
