@@ -38,23 +38,30 @@ function App() {
   })
   const [isPartnershipSubmitted, setIsPartnershipSubmitted] = useState(false)
 
-  const handleContactSubmit = async (e) => {
+  const handleContactSubmit = async (e, solutionType = null) => {
     e.preventDefault()
     
     try {
+      // Determinar o assunto baseado no tipo de solução
+      let subject = `Nova mensagem de contato - ${contactForm.name} (${contactForm.company})`
+      if (solutionType) {
+        subject = `Nova solicitação ${solutionType} - ${contactForm.name} (${contactForm.company})`
+      }
+      
       // Enviar dados para webhook personalizado que enviará email real
       const emailData = {
         to: 'helio@nowgo.com.br',
-        subject: `Nova mensagem de contato - ${contactForm.name} (${contactForm.company})`,
+        subject: subject,
         name: contactForm.name,
         email: contactForm.email,
         company: contactForm.company,
         message: contactForm.message,
+        solutionType: solutionType || 'Contato Geral',
         timestamp: new Date().toISOString()
       }
       
       // Usar nosso backend Flask melhorado
-      const response = await fetch('https://58hpi8c7lode.manus.space/send-email', {
+      const response = await fetch('http://localhost:5001/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -663,7 +670,7 @@ function App() {
                                     </p>
                                   </div>
                                 ) : (
-                                  <form onSubmit={handleContactSubmit} className="space-y-4">
+                                  <form onSubmit={(e) => handleContactSubmit(e, solution.title)} className="space-y-4">
                                     <div className="grid grid-cols-2 gap-4">
                                       <div className="space-y-2">
                                         <Label htmlFor="name">Name</Label>
@@ -803,7 +810,7 @@ function App() {
                                   </p>
                                 </div>
                               ) : (
-                                <form onSubmit={handleContactSubmit} className="space-y-4">
+                                <form onSubmit={(e) => handleContactSubmit(e, `Projeto: ${project.title}`)} className="space-y-4">
                                   <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                       <Label htmlFor="name">Name</Label>
@@ -1100,7 +1107,7 @@ function App() {
                                 </p>
                               </div>
                             ) : (
-                              <form onSubmit={handleContactSubmit} className="space-y-4">
+                              <form onSubmit={(e) => handleContactSubmit(e, 'Candidatura - Join our team')} className="space-y-4">
                                 <div className="grid grid-cols-2 gap-4">
                                   <div className="space-y-2">
                                     <Label htmlFor="name">Name</Label>
@@ -1173,7 +1180,7 @@ function App() {
                                 <p className="text-muted-foreground">We'll review your proposal and get back to you within 48 hours.</p>
                               </div>
                             ) : (
-                              <form onSubmit={handlePartnershipSubmit} className="space-y-4">
+                              <form onSubmit={(e) => handleContactSubmit(e, 'Parceria - Partnership')} className="space-y-4">
                                 <div className="grid grid-cols-2 gap-4">
                                   <div>
                                     <Label htmlFor="partnership-name">Name</Label>
@@ -1469,7 +1476,7 @@ function App() {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleContactSubmit} className="space-y-4">
+                  <form onSubmit={(e) => handleContactSubmit(e, 'Transformação Digital - Start Transformation')} className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="name">Name</Label>
@@ -1636,7 +1643,7 @@ function App() {
                               <li>• DevOps Engineer</li>
                             </ul>
                           </div>
-                          <form onSubmit={handleContactSubmit} className="space-y-4">
+                          <form onSubmit={(e) => handleContactSubmit(e, 'Candidatura - Careers')} className="space-y-4">
                             <div className="grid grid-cols-2 gap-4">
                               <div className="space-y-2">
                                 <Label htmlFor="name">Full Name</Label>
@@ -1730,7 +1737,7 @@ function App() {
                               <li>• Academic & Research Institutions</li>
                             </ul>
                           </div>
-                          <form onSubmit={handleContactSubmit} className="space-y-4">
+                          <form onSubmit={(e) => handleContactSubmit(e, 'Parceria - Partnerships')} className="space-y-4">
                             <div className="grid grid-cols-2 gap-4">
                               <div className="space-y-2">
                                 <Label htmlFor="name">Contact Name</Label>
@@ -1839,7 +1846,7 @@ function App() {
                           </p>
                         </div>
                       ) : (
-                        <form onSubmit={handleContactSubmit} className="space-y-4">
+                        <form onSubmit={(e) => handleContactSubmit(e, 'Contato Geral - Get in Touch')} className="space-y-4">
                           <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
                               <Label htmlFor="name">Name</Label>
