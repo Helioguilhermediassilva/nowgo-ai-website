@@ -54,7 +54,7 @@ function App() {
       }
       
       // Usar nosso backend Flask melhorado
-      const response = await fetch('https://5000-i37vtl7jn4dqm5istd13x-98ae9eb9.manusvm.computer/send-email', {
+      const response = await fetch('https://58hpi8c7lode.manus.space/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
