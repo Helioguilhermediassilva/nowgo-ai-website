@@ -153,14 +153,25 @@
   
   /* Ensure button text is always visible */
   .schedule-demo-btn {
-    transition: none !important;
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+    color: white !important;
   }
   
-  .schedule-demo-btn span {
+  .schedule-demo-btn * {
     opacity: 1 !important;
     visibility: visible !important;
-    animation: none !important;
-    transition: none !important;
+    color: white !important;
+  }
+  
+  .schedule-demo-btn:hover {
+    background-color: white !important;
+    color: var(--nowgo-navy) !important;
+  }
+  
+  .schedule-demo-btn:hover * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: var(--nowgo-navy) !important;
   }
 }
 
