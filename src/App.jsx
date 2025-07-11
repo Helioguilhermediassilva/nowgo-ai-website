@@ -66,7 +66,7 @@ function App() {
         timestamp: new Date().toISOString()
       }
       
-      const response = await fetch('http://localhost:5001/api/send-email', {
+      const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -105,24 +105,78 @@ function App() {
     }
   }
 
-  const handleDemoSubmit = (e) => {
+  const handleDemoSubmit = async (e) => {
     e.preventDefault()
-    // Simulate demo scheduling
-    setIsDemoSubmitted(true)
-    setTimeout(() => {
-      setIsDemoSubmitted(false)
-      setDemoForm({ name: '', email: '', company: '', solution: '', date: '', message: '' })
-    }, 3000)
+    
+    try {
+      const emailData = {
+        to: 'helio@nowgo.com.br',
+        subject: `Nova solicitação de demonstração - ${demoForm.name} (${demoForm.company})`,
+        name: demoForm.name,
+        email: demoForm.email,
+        company: demoForm.company,
+        message: `Solução: ${demoForm.solution}\nData preferida: ${demoForm.date}\nMensagem: ${demoForm.message}`,
+        solutionType: 'Demonstração',
+        timestamp: new Date().toISOString()
+      }
+      
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData)
+      })
+      
+      const result = await response.json()
+      
+      if (result.success) {
+        setIsDemoSubmitted(true)
+        setTimeout(() => {
+          setIsDemoSubmitted(false)
+          setDemoForm({ name: '', email: '', company: '', solution: '', date: '', message: '' })
+        }, 3000)
+      }
+    } catch (error) {
+      console.error('Erro ao enviar demonstração:', error)
+    }
   }
 
-  const handlePartnershipSubmit = (e) => {
+  const handlePartnershipSubmit = async (e) => {
     e.preventDefault()
-    // Simulate partnership form submission
-    setIsPartnershipSubmitted(true)
-    setTimeout(() => {
-      setIsPartnershipSubmitted(false)
-      setPartnershipForm({ name: '', email: '', company: '', partnershipType: '', message: '' })
-    }, 3000)
+    
+    try {
+      const emailData = {
+        to: 'helio@nowgo.com.br',
+        subject: `Nova solicitação de parceria - ${partnershipForm.name} (${partnershipForm.company})`,
+        name: partnershipForm.name,
+        email: partnershipForm.email,
+        company: partnershipForm.company,
+        message: `Tipo de parceria: ${partnershipForm.partnershipType}\nMensagem: ${partnershipForm.message}`,
+        solutionType: 'Parceria',
+        timestamp: new Date().toISOString()
+      }
+      
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData)
+      })
+      
+      const result = await response.json()
+      
+      if (result.success) {
+        setIsPartnershipSubmitted(true)
+        setTimeout(() => {
+          setIsPartnershipSubmitted(false)
+          setPartnershipForm({ name: '', email: '', company: '', partnershipType: '', message: '' })
+        }, 3000)
+      }
+    } catch (error) {
+      console.error('Erro ao enviar parceria:', error)
+    }
   }
 
   const handleInputChange = (e) => {
@@ -135,6 +189,13 @@ function App() {
   const handleDemoInputChange = (e) => {
     setDemoForm({
       ...demoForm,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handlePartnershipInputChange = (e) => {
+    setPartnershipForm({
+      ...partnershipForm,
       [e.target.name]: e.target.value
     })
   }
@@ -577,7 +638,7 @@ function App() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-muted/50">
+      <section className="py-16 apple-stats-gradient">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
@@ -597,7 +658,7 @@ function App() {
       </section>
 
       {/* Solutions Section */}
-      <section id="solutions" className="py-20">
+      <section id="solutions" className="py-20 apple-gradient-radial">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Global Solutions</h2>
@@ -753,7 +814,7 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-muted/50">
+      <section id="projects" className="py-20 apple-blue-soft">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Innovation Projects</h2>
@@ -891,7 +952,7 @@ function App() {
       </section>
 
       {/* Research Section */}
-      <section id="research" className="py-20">
+      <section id="research" className="py-20 apple-blue-soft">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Research & Thought Leadership</h2>
@@ -1009,7 +1070,7 @@ function App() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-muted/50">
+      <section id="about" className="py-20 apple-blue-medium">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -1288,7 +1349,7 @@ function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-muted/50">
+      <section className="py-20 apple-testimonials-gradient">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">What Our Clients Say</h2>

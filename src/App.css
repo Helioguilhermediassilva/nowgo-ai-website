@@ -131,6 +131,35 @@
     background: linear-gradient(135deg, var(--nowgo-navy) 0%, var(--nowgo-teal) 100%);
   }
   
+  /* Apple-inspired gradients */
+  .apple-blue-soft {
+    background: linear-gradient(135deg, #e6f3ff 0%, #f8fbff 50%, #ffffff 100%);
+  }
+  
+  .apple-blue-medium {
+    background: linear-gradient(135deg, #cce7ff 0%, #e6f3ff 50%, #f0f8ff 100%);
+  }
+  
+  .apple-blue-vibrant {
+    background: linear-gradient(135deg, #007AFF 0%, #0056CC 100%);
+  }
+  
+  .apple-blue-dark {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+  
+  .apple-gradient-radial {
+    background: radial-gradient(ellipse at center, #e6f3ff 0%, #f8fbff 50%, #ffffff 100%);
+  }
+  
+  .apple-stats-gradient {
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 50%, #ddeeff 100%);
+  }
+  
+  .apple-testimonials-gradient {
+    background: linear-gradient(135deg, #f8fbff 0%, #f0f8ff 50%, #e8f4ff 100%);
+  }
+  
   .text-gradient {
     background: linear-gradient(135deg, var(--nowgo-navy) 0%, var(--nowgo-neon-green) 100%);
     -webkit-background-clip: text;
