@@ -957,7 +957,7 @@ function App() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Globe className="h-5 w-5 text-primary" />
-                  <span>Presence across 4 continents</span>
+                  <span>Global Presence</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Users className="h-5 w-5 text-primary" />
@@ -1031,27 +1031,6 @@ function App() {
                             <span className="text-sm">Global Technology Leadership</span>
                           </li>
                         </ul>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-3">Global Presence</h4>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <p className="font-medium">Americas</p>
-                            <p className="text-sm text-muted-foreground">Brasília (HQ), São Paulo, New York</p>
-                          </div>
-                          <div>
-                            <p className="font-medium">Europe</p>
-                            <p className="text-sm text-muted-foreground">London, Berlin, Amsterdam</p>
-                          </div>
-                          <div>
-                            <p className="font-medium">Asia</p>
-                            <p className="text-sm text-muted-foreground">Singapore, Tokyo, Mumbai</p>
-                          </div>
-                          <div>
-                            <p className="font-medium">Africa</p>
-                            <p className="text-sm text-muted-foreground">Cape Town, Lagos</p>
-                          </div>
-                        </div>
                       </div>
                       <div className="flex gap-2">
                         <Dialog>
@@ -1554,7 +1533,7 @@ function App() {
                         <div>
                           <h4 className="font-semibold mb-2">Global Presence</h4>
                           <p className="text-sm text-muted-foreground">
-                            Headquartered in Brasília, Brazil, with operations across 4 continents and partnerships 
+                            Headquartered in Brasília, Brazil, with global operations and partnerships 
                             with leading technology companies including NVIDIA.
                           </p>
                         </div>
