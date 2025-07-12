@@ -153,7 +153,9 @@
   }
   
   .apple-stats-gradient {
-    background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 50%, #ddeeff 100%);
+    background: linear-gradient(135deg, #f8fcff 0%, #f0f8ff 30%, #e8f4ff 70%, #e0f0ff 100%);
+    border-top: 1px solid rgba(59, 130, 246, 0.1);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
   }
   
   .apple-testimonials-gradient {
