@@ -937,10 +937,85 @@ function App() {
                   </p>
                 </div>
                 <div className="mt-auto">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Smart Cities</span>
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Infrastructure</span>
                   </div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full">
+                        <Mail className="mr-2 h-4 w-4" />
+                        Learn More
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>NowGo Urban Mirror</DialogTitle>
+                        <DialogDescription>
+                          Contact our team to learn more about our urban infrastructure optimization solutions.
+                        </DialogDescription>
+                      </DialogHeader>
+                      {isContactSubmitted ? (
+                        <div className="flex flex-col items-center justify-center py-8">
+                          <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                          <h3 className="text-lg font-semibold mb-2">Request Sent!</h3>
+                          <p className="text-muted-foreground text-center">
+                            Our NowGo Urban Mirror specialists will contact you soon.
+                          </p>
+                        </div>
+                      ) : (
+                        <form onSubmit={(e) => handleContactSubmit(e, 'NowGo Urban Mirror - Innovation Project')} className="space-y-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="name">Name</Label>
+                              <Input
+                                id="name"
+                                name="name"
+                                value={contactForm.name}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email">Email</Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={contactForm.email}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="company">Company</Label>
+                            <Input
+                              id="company"
+                              name="company"
+                              value={contactForm.company}
+                              onChange={handleInputChange}
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="message">Tell us about your needs</Label>
+                            <Textarea
+                              id="message"
+                              name="message"
+                              value={contactForm.message}
+                              onChange={handleInputChange}
+                              rows={3}
+                              placeholder="How can NowGo Urban Mirror help your organization?"
+                              required
+                            />
+                          </div>
+                          <Button type="submit" className="w-full">
+                            Send Request
+                          </Button>
+                        </form>
+                      )}
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardContent>
             </Card>
@@ -957,10 +1032,85 @@ function App() {
                   </p>
                 </div>
                 <div className="mt-auto">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Environment</span>
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Climate</span>
                   </div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full">
+                        <Mail className="mr-2 h-4 w-4" />
+                        Learn More
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Earth Guard & GEIH</DialogTitle>
+                        <DialogDescription>
+                          Contact our team to learn more about our environmental protection AI solutions.
+                        </DialogDescription>
+                      </DialogHeader>
+                      {isContactSubmitted ? (
+                        <div className="flex flex-col items-center justify-center py-8">
+                          <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                          <h3 className="text-lg font-semibold mb-2">Request Sent!</h3>
+                          <p className="text-muted-foreground text-center">
+                            Our Earth Guard & GEIH specialists will contact you soon.
+                          </p>
+                        </div>
+                      ) : (
+                        <form onSubmit={(e) => handleContactSubmit(e, 'Earth Guard & GEIH - Innovation Project')} className="space-y-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="name">Name</Label>
+                              <Input
+                                id="name"
+                                name="name"
+                                value={contactForm.name}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email">Email</Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={contactForm.email}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="company">Company</Label>
+                            <Input
+                              id="company"
+                              name="company"
+                              value={contactForm.company}
+                              onChange={handleInputChange}
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="message">Tell us about your needs</Label>
+                            <Textarea
+                              id="message"
+                              name="message"
+                              value={contactForm.message}
+                              onChange={handleInputChange}
+                              rows={3}
+                              placeholder="How can Earth Guard & GEIH help your organization?"
+                              required
+                            />
+                          </div>
+                          <Button type="submit" className="w-full">
+                            Send Request
+                          </Button>
+                        </form>
+                      )}
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardContent>
             </Card>
@@ -977,10 +1127,85 @@ function App() {
                   </p>
                 </div>
                 <div className="mt-auto">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Healthcare</span>
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Medical AI</span>
                   </div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full">
+                        <Mail className="mr-2 h-4 w-4" />
+                        Learn More
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>100% AI Hospital</DialogTitle>
+                        <DialogDescription>
+                          Contact our team to learn more about our intelligent healthcare solutions.
+                        </DialogDescription>
+                      </DialogHeader>
+                      {isContactSubmitted ? (
+                        <div className="flex flex-col items-center justify-center py-8">
+                          <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                          <h3 className="text-lg font-semibold mb-2">Request Sent!</h3>
+                          <p className="text-muted-foreground text-center">
+                            Our 100% AI Hospital specialists will contact you soon.
+                          </p>
+                        </div>
+                      ) : (
+                        <form onSubmit={(e) => handleContactSubmit(e, '100% AI Hospital - Innovation Project')} className="space-y-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="name">Name</Label>
+                              <Input
+                                id="name"
+                                name="name"
+                                value={contactForm.name}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email">Email</Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={contactForm.email}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="company">Company</Label>
+                            <Input
+                              id="company"
+                              name="company"
+                              value={contactForm.company}
+                              onChange={handleInputChange}
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="message">Tell us about your needs</Label>
+                            <Textarea
+                              id="message"
+                              name="message"
+                              value={contactForm.message}
+                              onChange={handleInputChange}
+                              rows={3}
+                              placeholder="How can 100% AI Hospital help your organization?"
+                              required
+                            />
+                          </div>
+                          <Button type="submit" className="w-full">
+                            Send Request
+                          </Button>
+                        </form>
+                      )}
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardContent>
             </Card>
@@ -997,10 +1222,85 @@ function App() {
                   </p>
                 </div>
                 <div className="mt-auto">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Education</span>
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Learning</span>
                   </div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full">
+                        <Mail className="mr-2 h-4 w-4" />
+                        Learn More
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>AI-Based Schools</DialogTitle>
+                        <DialogDescription>
+                          Contact our team to learn more about our personalized education AI solutions.
+                        </DialogDescription>
+                      </DialogHeader>
+                      {isContactSubmitted ? (
+                        <div className="flex flex-col items-center justify-center py-8">
+                          <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                          <h3 className="text-lg font-semibold mb-2">Request Sent!</h3>
+                          <p className="text-muted-foreground text-center">
+                            Our AI-Based Schools specialists will contact you soon.
+                          </p>
+                        </div>
+                      ) : (
+                        <form onSubmit={(e) => handleContactSubmit(e, 'AI-Based Schools - Innovation Project')} className="space-y-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="name">Name</Label>
+                              <Input
+                                id="name"
+                                name="name"
+                                value={contactForm.name}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email">Email</Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={contactForm.email}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="company">Company</Label>
+                            <Input
+                              id="company"
+                              name="company"
+                              value={contactForm.company}
+                              onChange={handleInputChange}
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="message">Tell us about your needs</Label>
+                            <Textarea
+                              id="message"
+                              name="message"
+                              value={contactForm.message}
+                              onChange={handleInputChange}
+                              rows={3}
+                              placeholder="How can AI-Based Schools help your organization?"
+                              required
+                            />
+                          </div>
+                          <Button type="submit" className="w-full">
+                            Send Request
+                          </Button>
+                        </form>
+                      )}
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardContent>
             </Card>
@@ -1017,10 +1317,85 @@ function App() {
                   </p>
                 </div>
                 <div className="mt-auto">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Entertainment</span>
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Creative AI</span>
                   </div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full">
+                        <Mail className="mr-2 h-4 w-4" />
+                        Learn More
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Twinverse Studios</DialogTitle>
+                        <DialogDescription>
+                          Contact our team to learn more about our AI-powered content creation solutions.
+                        </DialogDescription>
+                      </DialogHeader>
+                      {isContactSubmitted ? (
+                        <div className="flex flex-col items-center justify-center py-8">
+                          <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                          <h3 className="text-lg font-semibold mb-2">Request Sent!</h3>
+                          <p className="text-muted-foreground text-center">
+                            Our Twinverse Studios specialists will contact you soon.
+                          </p>
+                        </div>
+                      ) : (
+                        <form onSubmit={(e) => handleContactSubmit(e, 'Twinverse Studios - Innovation Project')} className="space-y-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="name">Name</Label>
+                              <Input
+                                id="name"
+                                name="name"
+                                value={contactForm.name}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email">Email</Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={contactForm.email}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="company">Company</Label>
+                            <Input
+                              id="company"
+                              name="company"
+                              value={contactForm.company}
+                              onChange={handleInputChange}
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="message">Tell us about your needs</Label>
+                            <Textarea
+                              id="message"
+                              name="message"
+                              value={contactForm.message}
+                              onChange={handleInputChange}
+                              rows={3}
+                              placeholder="How can Twinverse Studios help your organization?"
+                              required
+                            />
+                          </div>
+                          <Button type="submit" className="w-full">
+                            Send Request
+                          </Button>
+                        </form>
+                      )}
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardContent>
             </Card>
@@ -1037,10 +1412,85 @@ function App() {
                   </p>
                 </div>
                 <div className="mt-auto">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Agriculture</span>
                     <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Sustainability</span>
                   </div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full">
+                        <Mail className="mr-2 h-4 w-4" />
+                        Learn More
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>AgriAI</DialogTitle>
+                        <DialogDescription>
+                          Contact our team to learn more about our smart farming AI solutions.
+                        </DialogDescription>
+                      </DialogHeader>
+                      {isContactSubmitted ? (
+                        <div className="flex flex-col items-center justify-center py-8">
+                          <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                          <h3 className="text-lg font-semibold mb-2">Request Sent!</h3>
+                          <p className="text-muted-foreground text-center">
+                            Our AgriAI specialists will contact you soon.
+                          </p>
+                        </div>
+                      ) : (
+                        <form onSubmit={(e) => handleContactSubmit(e, 'AgriAI - Innovation Project')} className="space-y-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="name">Name</Label>
+                              <Input
+                                id="name"
+                                name="name"
+                                value={contactForm.name}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="email">Email</Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={contactForm.email}
+                                onChange={handleInputChange}
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="company">Company</Label>
+                            <Input
+                              id="company"
+                              name="company"
+                              value={contactForm.company}
+                              onChange={handleInputChange}
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="message">Tell us about your needs</Label>
+                            <Textarea
+                              id="message"
+                              name="message"
+                              value={contactForm.message}
+                              onChange={handleInputChange}
+                              rows={3}
+                              placeholder="How can AgriAI help your organization?"
+                              required
+                            />
+                          </div>
+                          <Button type="submit" className="w-full">
+                            Send Request
+                          </Button>
+                        </form>
+                      )}
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardContent>
             </Card>
