@@ -943,8 +943,8 @@ function App() {
                   </div>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button className="w-full">
-                        Learn More
+                      <Button className="w-full" variant="outline">
+                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
@@ -1115,8 +1115,8 @@ function App() {
                   </div>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button className="w-full">
-                        Learn More
+                      <Button className="w-full" variant="outline">
+                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
@@ -1287,8 +1287,8 @@ function App() {
                   </div>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button className="w-full">
-                        Learn More
+                      <Button className="w-full" variant="outline">
+                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
@@ -1459,8 +1459,8 @@ function App() {
                   </div>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button className="w-full">
-                        Learn More
+                      <Button className="w-full" variant="outline">
+                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
@@ -1631,8 +1631,8 @@ function App() {
                   </div>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button className="w-full">
-                        Learn More
+                      <Button className="w-full" variant="outline">
+                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
@@ -1803,8 +1803,8 @@ function App() {
                   </div>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button className="w-full">
-                        Learn More
+                      <Button className="w-full" variant="outline">
+                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
