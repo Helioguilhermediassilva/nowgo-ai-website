@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
 import { Label } from '@/components/ui/label.jsx'
-import { Globe, Zap, Building, Users, Award, ArrowRight, Download, Mail, Phone, MapPin, ExternalLink, FileText, CheckCircle, X } from 'lucide-react'
+import { Globe, Zap, Building, Users, Award, ArrowRight, Download, Mail, Phone, MapPin, ExternalLink, FileText, CheckCircle, X, Leaf, Heart, GraduationCap, Music, Sprout } from 'lucide-react'
 import './App.css'
 
 function App() {
@@ -925,98 +925,21 @@ function App() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Tiago Goulart - Primeiro */}
             <Card className="p-6 hover:shadow-lg transition-shadow h-full">
               <CardContent className="p-0 h-full flex flex-col">
-                <div className="flex items-start gap-4 h-full">
-                  <div className="text-4xl text-primary opacity-50">"</div>
-                  <div className="flex flex-col h-full">
-                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                      "The partnership with NowGo AI was essential for the development of Artificial Intelligence projects within the 
-                      Inovaskill program, which involved companies from the Jacto Group and others in the region. The support provided 
-                      was crucial in achieving practical and innovative results. This collaboration highlights how the combination of 
-                      expertise and purpose can turn challenges into effective and impactful solutions."
-                    </p>
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-1 text-yellow-500">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-sm">★</span>
-                        ))}
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-2">Tiago Goulart, CEO and Founder, Mentto</p>
-                    </div>
+                <div className="mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <Building className="h-6 w-6 text-primary" />
                   </div>
+                  <h3 className="text-xl font-semibold mb-2">NowGo Urban Mirror</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Urban infrastructure optimization with AI-powered analytics for smart city development and sustainable urban planning.
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Matheus - Segundo */}
-            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
-              <CardContent className="p-0 h-full flex flex-col">
-                <div className="flex items-start gap-4 h-full">
-                  <div className="text-4xl text-primary opacity-50">"</div>
-                  <div className="flex flex-col h-full">
-                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                      "NowGo AI has been transforming education and the business ecosystem in São Paulo. In partnership with the NowGo AI team, 
-                      the first Software Development and Artificial Intelligence curriculum was created at the São Paulo Technology College, 
-                      preparing professionals for the 4.0 market and benefiting over 80,000 young talents across the state."
-                    </p>
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-1 text-yellow-500">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-sm">★</span>
-                        ))}
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-2">Matheus, DEV, Intercept Rx</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Ana Paula Costa - Terceiro */}
-            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
-              <CardContent className="p-0 h-full flex flex-col">
-                <div className="flex items-start gap-4 h-full">
-                  <div className="text-4xl text-primary opacity-50">"</div>
-                  <div className="flex flex-col h-full">
-                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                      "Having the NowGo AI team as mentors in the latest cohort of startups at Bluefields Accelerator was a privilege. 
-                      Their expertise in artificial intelligence and strategic vision were essential to the entrepreneurs' success, providing 
-                      insights that transformed business strategies and broadened market perspectives. During the MVP bootcamp, the team made 
-                      a direct impact on the mentoring sessions, receiving 100% positive feedback from the startup founders."
-                    </p>
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-1 text-yellow-500">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-sm">★</span>
-                        ))}
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-2">Ana Paula Costa, Bluefields</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Demais depoimentos */}
-            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
-              <CardContent className="p-0 h-full flex flex-col">
-                <div className="flex items-start gap-4 h-full">
-                  <div className="text-4xl text-primary opacity-50">"</div>
-                  <div className="flex flex-col h-full">
-                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                      "The NowGo AI team consists of highly experienced professionals, and every mentoring session with them is a masterclass. 
-                      It's truly a privilege to learn from them – no doubt, a valuable use of time."
-                    </p>
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-1 text-yellow-500">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-sm">★</span>
-                        ))}
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-2">Enterprise Client</p>
-                    </div>
+                <div className="mt-auto">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Smart Cities</span>
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Infrastructure</span>
                   </div>
                 </div>
               </CardContent>
@@ -1024,21 +947,19 @@ function App() {
 
             <Card className="p-6 hover:shadow-lg transition-shadow h-full">
               <CardContent className="p-0 h-full flex flex-col">
-                <div className="flex items-start gap-4 h-full">
-                  <div className="text-4xl text-primary opacity-50">"</div>
-                  <div className="flex flex-col h-full">
-                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                      "Once again, the NowGo AI team amazed us with their depth of knowledge and genuine commitment to helping. 
-                      They even studied our case beforehand and developed a prototype as an example. A fantastic mentoring session – we're extremely grateful!"
-                    </p>
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-1 text-yellow-500">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-sm">★</span>
-                        ))}
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-2">Technology Company</p>
-                    </div>
+                <div className="mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <Leaf className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Earth Guard & GEIH</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Environmental protection powered by AI with real-time monitoring and predictive analytics for climate action.
+                  </p>
+                </div>
+                <div className="mt-auto">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Environment</span>
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Climate</span>
                   </div>
                 </div>
               </CardContent>
@@ -1046,21 +967,19 @@ function App() {
 
             <Card className="p-6 hover:shadow-lg transition-shadow h-full">
               <CardContent className="p-0 h-full flex flex-col">
-                <div className="flex items-start gap-4 h-full">
-                  <div className="text-4xl text-primary opacity-50">"</div>
-                  <div className="flex flex-col h-full">
-                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                      "The NowGo AI team led the session with great expertise. They're extremely skilled and knowledgeable. 
-                      We're already scheduling a follow-up session to go even deeper."
-                    </p>
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-1 text-yellow-500">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-sm">★</span>
-                        ))}
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-2">Enterprise Company</p>
-                    </div>
+                <div className="mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <Heart className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">100% AI Hospital</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Fully integrated intelligent healthcare system with AI-driven diagnostics, treatment planning, and patient care optimization.
+                  </p>
+                </div>
+                <div className="mt-auto">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Healthcare</span>
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Medical AI</span>
                   </div>
                 </div>
               </CardContent>
@@ -1068,21 +987,59 @@ function App() {
 
             <Card className="p-6 hover:shadow-lg transition-shadow h-full">
               <CardContent className="p-0 h-full flex flex-col">
-                <div className="flex items-start gap-4 h-full">
-                  <div className="text-4xl text-primary opacity-50">"</div>
-                  <div className="flex flex-col h-full">
-                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                      "Our session was exceptional. They brought us valuable insights for our project and introduced AI tools 
-                      that can really accelerate our work. Looking forward to our next meeting!"
-                    </p>
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-1 text-yellow-500">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-sm">★</span>
-                        ))}
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-2">Global Enterprise</p>
-                    </div>
+                <div className="mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <GraduationCap className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">AI-Based Schools</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Personalized and scalable education powered by AI with adaptive learning systems and intelligent tutoring.
+                  </p>
+                </div>
+                <div className="mt-auto">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Education</span>
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Learning</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <Music className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Twinverse Studios</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Music, cinema and storytelling with AI-powered content creation and immersive digital experiences.
+                  </p>
+                </div>
+                <div className="mt-auto">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Entertainment</span>
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Creative AI</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <Sprout className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">AgriAI</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Smart farming and AI-driven food systems with precision agriculture and sustainable crop management.
+                  </p>
+                </div>
+                <div className="mt-auto">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Agriculture</span>
+                    <span className="px-2 py-1 bg-primary/10 rounded-full text-xs">Sustainability</span>
                   </div>
                 </div>
               </CardContent>
