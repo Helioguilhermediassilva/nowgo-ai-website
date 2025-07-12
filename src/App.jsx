@@ -2496,7 +2496,11 @@ function App() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
+            
+          
+          <div className="flex justify-center mt-8">
+            <div className="max-w-2xl w-full">
+              <Card className="p-6 hover:shadow-lg transition-shadow h-full">
               <CardContent className="p-0 h-full flex flex-col">
                 <div className="flex items-start gap-4 h-full">
                   <div className="text-4xl text-primary opacity-50">"</div>
@@ -2516,7 +2520,10 @@ function App() {
                   </div>
                 </div>
               </CardContent>
-            </Card></div>
+            </Card>
+            </div>
+          </div>
+        </div>
         </div>
       </section>
 
