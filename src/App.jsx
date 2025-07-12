@@ -925,129 +925,168 @@ function App() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <Card key={project.id} className="card-hover">
-                <CardHeader>
-                  <Badge variant="secondary" className="w-fit">{project.category}</Badge>
-                  <CardTitle className="text-lg">{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" size="sm">
-                        View Details <ArrowRight className="ml-2 h-3 w-3" />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[700px] max-h-[80vh] overflow-y-auto">
-                      <DialogHeader>
-                        <DialogTitle>{project.title}</DialogTitle>
-                        <DialogDescription>
-                          {project.fullDescription}
-                        </DialogDescription>
-                      </DialogHeader>
-                      <div className="space-y-6">
-                        <div>
-                          <h4 className="font-semibold mb-3">Key Features</h4>
-                          <ul className="space-y-2">
-                            {project.features.map((feature, index) => (
-                              <li key={index} className="flex items-start gap-2">
-                                <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                                <span className="text-sm">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold mb-3">Technologies</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {project.technologies.map((tech, index) => (
-                              <Badge key={index} variant="secondary">{tech}</Badge>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="flex gap-2">
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button className="w-full">
-                                <Mail className="mr-2 h-4 w-4" />
-                                Learn More
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="sm:max-w-[425px]">
-                              <DialogHeader>
-                                <DialogTitle>Learn More About {project.title}</DialogTitle>
-                                <DialogDescription>
-                                  Get detailed information about this innovative project.
-                                </DialogDescription>
-                              </DialogHeader>
-                              {isContactSubmitted ? (
-                                <div className="flex flex-col items-center justify-center py-8">
-                                  <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
-                                  <h3 className="text-lg font-semibold mb-2">Request Sent!</h3>
-                                  <p className="text-muted-foreground text-center">
-                                    Our project team will send you detailed information about {project.title}.
-                                  </p>
-                                </div>
-                              ) : (
-                                <form onSubmit={(e) => handleContactSubmit(e, `Projeto: ${project.title}`)} className="space-y-4">
-                                  <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                      <Label htmlFor="name">Name</Label>
-                                      <Input
-                                        id="name"
-                                        name="name"
-                                        value={contactForm.name}
-                                        onChange={handleInputChange}
-                                        required
-                                      />
-                                    </div>
-                                    <div className="space-y-2">
-                                      <Label htmlFor="email">Email</Label>
-                                      <Input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        value={contactForm.email}
-                                        onChange={handleInputChange}
-                                        required
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="space-y-2">
-                                    <Label htmlFor="company">Company/Organization</Label>
-                                    <Input
-                                      id="company"
-                                      name="company"
-                                      value={contactForm.company}
-                                      onChange={handleInputChange}
-                                    />
-                                  </div>
-                                  <div className="space-y-2">
-                                    <Label htmlFor="message">Specific interests</Label>
-                                    <Textarea
-                                      id="message"
-                                      name="message"
-                                      value={contactForm.message}
-                                      onChange={handleInputChange}
-                                      rows={3}
-                                      placeholder={`What aspects of ${project.title} interest you most?`}
-                                    />
-                                  </div>
-                                  <Button type="submit" className="w-full">
-                                    Request Information
-                                  </Button>
-                                </form>
-                              )}
-                            </DialogContent>
-                          </Dialog>
-                        </div>
+            {/* Tiago Goulart - Primeiro */}
+            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="flex items-start gap-4 h-full">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div className="flex flex-col h-full">
+                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                      "The partnership with NowGo AI was essential for the development of Artificial Intelligence projects within the 
+                      Inovaskill program, which involved companies from the Jacto Group and others in the region. The support provided 
+                      was crucial in achieving practical and innovative results. This collaboration highlights how the combination of 
+                      expertise and purpose can turn challenges into effective and impactful solutions."
+                    </p>
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-1 text-yellow-500">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-sm">★</span>
+                        ))}
                       </div>
-                    </DialogContent>
-                  </Dialog>
-                </CardContent>
-              </Card>
-            ))}
+                      <p className="text-sm text-muted-foreground mt-2">Tiago Goulart, CEO and Founder, Mentto</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Matheus - Segundo */}
+            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="flex items-start gap-4 h-full">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div className="flex flex-col h-full">
+                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                      "NowGo AI has been transforming education and the business ecosystem in São Paulo. In partnership with the NowGo AI team, 
+                      the first Software Development and Artificial Intelligence curriculum was created at the São Paulo Technology College, 
+                      preparing professionals for the 4.0 market and benefiting over 80,000 young talents across the state."
+                    </p>
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-1 text-yellow-500">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-sm">★</span>
+                        ))}
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">Matheus, DEV, Intercept Rx</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Ana Paula Costa - Terceiro */}
+            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="flex items-start gap-4 h-full">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div className="flex flex-col h-full">
+                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                      "Having the NowGo AI team as mentors in the latest cohort of startups at Bluefields Accelerator was a privilege. 
+                      Their expertise in artificial intelligence and strategic vision were essential to the entrepreneurs' success, providing 
+                      insights that transformed business strategies and broadened market perspectives. During the MVP bootcamp, the team made 
+                      a direct impact on the mentoring sessions, receiving 100% positive feedback from the startup founders."
+                    </p>
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-1 text-yellow-500">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-sm">★</span>
+                        ))}
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">Ana Paula Costa, Bluefields</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Demais depoimentos */}
+            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="flex items-start gap-4 h-full">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div className="flex flex-col h-full">
+                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                      "The NowGo AI team consists of highly experienced professionals, and every mentoring session with them is a masterclass. 
+                      It's truly a privilege to learn from them – no doubt, a valuable use of time."
+                    </p>
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-1 text-yellow-500">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-sm">★</span>
+                        ))}
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">Enterprise Client</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="flex items-start gap-4 h-full">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div className="flex flex-col h-full">
+                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                      "Once again, the NowGo AI team amazed us with their depth of knowledge and genuine commitment to helping. 
+                      They even studied our case beforehand and developed a prototype as an example. A fantastic mentoring session – we're extremely grateful!"
+                    </p>
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-1 text-yellow-500">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-sm">★</span>
+                        ))}
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">Technology Company</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="flex items-start gap-4 h-full">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div className="flex flex-col h-full">
+                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                      "The NowGo AI team led the session with great expertise. They're extremely skilled and knowledgeable. 
+                      We're already scheduling a follow-up session to go even deeper."
+                    </p>
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-1 text-yellow-500">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-sm">★</span>
+                        ))}
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">Enterprise Company</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 hover:shadow-lg transition-shadow h-full">
+              <CardContent className="p-0 h-full flex flex-col">
+                <div className="flex items-start gap-4 h-full">
+                  <div className="text-4xl text-primary opacity-50">"</div>
+                  <div className="flex flex-col h-full">
+                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                      "Our session was exceptional. They brought us valuable insights for our project and introduced AI tools 
+                      that can really accelerate our work. Looking forward to our next meeting!"
+                    </p>
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-1 text-yellow-500">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-sm">★</span>
+                        ))}
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">Global Enterprise</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -1177,9 +1216,7 @@ function App() {
             <div>
               <h2 className="text-3xl md:text-5xl font-bold mb-6">About NowGo AI</h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Based in Brasília and operating globally, NowGo AI is a leading company in 
-                enterprise artificial intelligence, focused on democratizing AI through 
-                personalized and sustainable solutions.
+                NowGo AI is a global company in enterprise artificial intelligence, focused on democratizing AI through personalized and sustainable solutions.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
