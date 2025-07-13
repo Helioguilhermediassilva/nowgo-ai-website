@@ -2498,29 +2498,31 @@ function App() {
             </Card>
             
           
+          
+          {/* Último depoimento centralizado */}
           <div className="flex justify-center mt-8">
             <div className="max-w-2xl w-full">
               <Card className="p-6 hover:shadow-lg transition-shadow h-full">
-              <CardContent className="p-0 h-full flex flex-col">
-                <div className="flex items-start gap-4 h-full">
-                  <div className="text-4xl text-primary opacity-50">"</div>
-                  <div className="flex flex-col h-full">
-                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                      "Our session was exceptional. They brought us valuable insights for our project and introduced AI tools 
-                      that can really accelerate our work. Looking forward to our next meeting!"
-                    </p>
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-1 text-yellow-500">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-sm">★</span>
-                        ))}
+                <CardContent className="p-0 h-full flex flex-col">
+                  <div className="flex items-start gap-4 h-full">
+                    <div className="text-4xl text-primary opacity-50">"</div>
+                    <div className="flex flex-col h-full">
+                      <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                        "Our session was exceptional. They brought us valuable insights for our project and introduced AI tools 
+                        that can really accelerate our work. Looking forward to our next meeting!"
+                      </p>
+                      <div className="mt-auto">
+                        <div className="flex items-center gap-1 text-yellow-500">
+                          {[...Array(5)].map((_, i) => (
+                            <span key={i} className="text-sm">★</span>
+                          ))}
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-2">Global Enterprise</p>
                       </div>
-                      <p className="text-sm text-muted-foreground mt-2">Global Enterprise</p>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
